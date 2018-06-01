@@ -22,14 +22,22 @@ class App extends Component {
     }.bind(this)
 
     showView = function (e) {
-        this.setState({
-            currentView: e.target.id.split("__")[1]
-        })
+        console.log(e);
+
+        if (e.target) {
+            this.setState({
+                currentView: e.target.id.split("__")[1]
+            })
+        } else {
+            this.setState({
+                currentView: e
+            })
+        }
     }.bind(this)
 
     View = function () {
         if (localStorage.getItem("yakId") === null) {
-            return <Login />
+            return <Login showView={this.showView} />
         } else {
             switch(this.state.currentView) {
                 case "home":

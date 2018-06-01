@@ -1,6 +1,12 @@
 {
-    "users": [],
-    "posts": [],
-    "events": [],
-    "ads": []
+  "users": [
+    {
+      "email": "steve@stevebrownlee.com",
+      "password": "me",
+      "id": 1
+    }
+  ],
+  "posts": [],
+  "events": [],
+  "ads": []
 }
