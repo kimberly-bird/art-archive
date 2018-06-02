@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
 import yak from "../images/yak.png"
+import "./NavBar.css"
 
 
 export default class NavBar extends Component {
@@ -14,17 +15,20 @@ export default class NavBar extends Component {
      * Local search handler, which invokes the searchHandler reference
      * passed from App
      */
-    search = function (e) {
-        e.preventDefault()
-        this.props.searchHandler(this.state.searchTerms)
-        this.setState({searchTerms: ""})
-    }.bind(this)
+    search = (e) => {
+        if (e.charCode === 13) {
+            this.props.searchHandler(this.state.searchTerms)
+            this.setState({searchTerms: ""})
+        }
+    }
 
     LoginLogout = () => {
         if (this.props.activeUser === null) {
-            return <a className="nav-link" id="nav__login" onClick={this.props.viewHandler} href="#">Login <span className="sr-only">(current)</span></a>
+            return <a className="nav-link" id="nav__login"
+                      onClick={this.props.viewHandler} href="#">Login</a>
         } else {
-            return <a className="nav-link" id="nav__logout" onClick={this.props.viewHandler} href="#">Logout <span className="sr-only">(current)</span></a>
+            return <a className="nav-link" id="nav__logout"
+                      onClick={this.props.viewHandler} href="#">Logout</a>
         }
     }
 
@@ -34,36 +38,31 @@ export default class NavBar extends Component {
         this.setState(stateToChange)
     }
 
-
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" id="nav__home" onClick={this.props.viewHandler} href="#">
-                    <img src={yak} style={{height: `50px`}} />
+            <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+                <a className="navbar-brand col-sm-3 col-md-2 mr-0" onClick={this.props.viewHandler} href="#">
+                    <img id="nav__home" src={yak} style={{height: `50px`}} />
                 </a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active">
+                <input id="searchTerms"
+                        value={this.state.searchTerms}
+                        onChange={this.handleFieldChange}
+                        onKeyPress={this.search}
+                        className="form-control form-control-dark w-100"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"/>
+                <ul className="navbar-nav px-3">
+                    <li className="nav-item text-nowrap">
+                        <a className="nav-link" id="nav__profile"
+                            onClick={this.props.viewHandler} href="#">Profile </a>
+                    </li>
+                </ul>
+                <ul className="navbar-nav px-3">
+                    <li className="nav-item text-nowrap">
                         <this.LoginLogout/>
                     </li>
-                    <li className="nav-item">
-                        <a className="nav-link" id="nav__profile" onClick={this.props.viewHandler} href="#">Profile</a>
-                    </li>
-                    </ul>
-                    <form className="form-inline my-2 my-lg-0" onSubmit={this.search}>
-                        <input id="searchTerms"
-                               onChange={this.handleFieldChange}
-                               className="form-control mr-sm-2"
-                               type="search"
-                               placeholder="Search"
-                               aria-label="Search"/>
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
+                </ul>
             </nav>
         )
     }
