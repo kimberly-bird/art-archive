@@ -14,7 +14,7 @@ export default class SearchResults extends Component {
 
     componentDidMount() {
         const newState = {}
-        fetch(`http://localhost:5001/posts?q=${encodeURI(this.props.terms)}&_expand=user`)
+        fetch(`http://localhost:5001/posts?message_like=${encodeURI(this.props.terms)}&_expand=user`)
             .then(r => r.json())
             .then(posts => {
                 newState.posts = posts
