@@ -6,7 +6,23 @@
       "id": 1
     }
   ],
-  "posts": [],
+  "posts": [
+    {
+      "message": "First attempt",
+      "userId": "1",
+      "id": 1
+    },
+    {
+      "message": "Got the basic version working tonight after a couple hours playing around with different options for component relationships",
+      "userId": 1,
+      "id": 2
+    },
+    {
+      "message": "What??",
+      "userId": "1",
+      "id": 3
+    }
+  ],
   "events": [],
   "ads": []
 }

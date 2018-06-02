@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import NavBar from './nav/NavBar';
-import Home from './Home';
+import Home from './newsfeed/Home';
 import Login from './auth/Login';
 import SearchResults from './search/SearchResults';
 
@@ -47,20 +47,18 @@ class App extends Component {
     }.bind(this)
 
     // Function to determine which main view to render
-    View = function () {
+    View = () => {
         if (localStorage.getItem("yakId") === null) {
             return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
         } else {
             switch(this.state.currentView) {
-                case "home":
-                    return <Home />
-                    break
                 case "logout":
                     return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
                 case "results":
                     return <SearchResults terms={this.state.searchTerms} />
+                case "home":
                 default:
-                    return <Home />
+                    return <Home activeUser={this.state.activeUser} />
             }
         }
     }
