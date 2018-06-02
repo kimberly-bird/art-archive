@@ -21,6 +21,11 @@
       "message": "What??",
       "userId": "1",
       "id": 3
+    },
+    {
+      "message": "Hi, I'm steve",
+      "userId": "1",
+      "id": 4
     }
   ],
   "events": [],

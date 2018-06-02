@@ -16,7 +16,8 @@ export default class NavBar extends Component {
      */
     search = function (e) {
         e.preventDefault()
-        this.props.searchHandler(document.querySelector("#mainSearch").value)
+        this.props.searchHandler(this.state.searchTerms)
+        this.setState({searchTerms: ""})
     }.bind(this)
 
     LoginLogout = () => {
@@ -26,6 +27,13 @@ export default class NavBar extends Component {
             return <a className="nav-link" id="nav__logout" onClick={this.props.viewHandler} href="#">Logout <span className="sr-only">(current)</span></a>
         }
     }
+
+    handleFieldChange = (evt) => {
+        const stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
+    }
+
 
     render() {
         return (
@@ -47,7 +55,12 @@ export default class NavBar extends Component {
                     </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0" onSubmit={this.search}>
-                        <input id="mainSearch" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <input id="searchTerms"
+                               onChange={this.handleFieldChange}
+                               className="form-control mr-sm-2"
+                               type="search"
+                               placeholder="Search"
+                               aria-label="Search"/>
                         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>

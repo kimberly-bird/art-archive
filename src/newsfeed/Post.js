@@ -2,7 +2,10 @@ import React, { Component } from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Post.css"
 
-
+/**
+ * TODOs:
+ *     - Only show the Like button if it's another user's post
+ */
 export default class Post extends Component {
     render() {
         return (
