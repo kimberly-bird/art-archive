@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css'
 import NavBar from './nav/NavBar';
 import Home from './newsfeed/Home';
@@ -43,14 +44,13 @@ class App extends Component {
         if (e.hasOwnProperty("target")) {
             view = e.target.id.split("__")[1]
 
-        // View switch manually triggered by passing in string
+            // View switch manually triggered by passing in string
         } else {
             view = e
         }
 
         // If user clicked logout in nav, empty local storage and update activeUser state
         if (view === "logout") {
-            console.log("User logged out, set activeUser to null")
             this.setActiveUser(null)
         }
 
@@ -66,7 +66,7 @@ class App extends Component {
         if (localStorage.getItem("yakId") === null) {
             return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
         } else {
-            switch(this.state.currentView) {
+            switch (this.state.currentView) {
                 case "logout":
                     return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
                 case "results":
@@ -82,14 +82,12 @@ class App extends Component {
         return (
             <article>
                 <NavBar viewHandler={this.showView}
-                        searchHandler={this.performSearch}
-                        activeUser={this.state.activeUser}
-                        setActiveUser={this.setActiveUser}
+                    searchHandler={this.performSearch}
+                    activeUser={this.state.activeUser}
+                    setActiveUser={this.setActiveUser}
                 />
 
-                <section className="content">
-                    {this.View()}
-                </section>
+                {this.View()}
             </article>
         )
     }

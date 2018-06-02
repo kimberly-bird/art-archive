@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import "bootstrap/dist/css/bootstrap.min.css"
 import yak from "../images/yak.png"
 import "./NavBar.css"
 
@@ -40,7 +39,7 @@ export default class NavBar extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+            <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
                 <a className="navbar-brand col-sm-3 col-md-2 mr-0" onClick={this.props.viewHandler} href="#">
                     <img id="nav__home" src={yak} style={{height: `50px`}} />
                 </a>
@@ -48,7 +47,7 @@ export default class NavBar extends Component {
                         value={this.state.searchTerms}
                         onChange={this.handleFieldChange}
                         onKeyPress={this.search}
-                        className="form-control form-control-dark w-100"
+                        className="form-control w-100"
                         type="search"
                         placeholder="Search"
                         aria-label="Search"/>

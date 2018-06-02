@@ -1,4 +1,8 @@
 .newsfeed {
-    margin: 25px auto;
-    max-width: 500px;
+
 }
+
+.container-full {
+    margin: 150px auto;
+    width: 95%;
+  }
