@@ -27,7 +27,7 @@ export default class Login extends Component {
             .then(user => {
                 // User exists. Set local storage, and show home view
                 if (user.length) {
-                    localStorage.setItem("yakId", user[0].id)
+                    this.props.setActiveUser(user[0].id)
                     this.props.showView("home")
 
                 // User doesn't exist
@@ -43,7 +43,7 @@ export default class Login extends Component {
 
                     // Set local storage with newly created user's id and show home view
                     .then(newUser => {
-                        localStorage.setItem("yakId", newUser.id)
+                        this.props.setActiveUser(newUser.id)
                         this.props.showView("home")
                     })
                 }

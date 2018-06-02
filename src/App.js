@@ -22,27 +22,41 @@ class App extends Component {
         })
     }.bind(this)
 
+    // Function to update local storage and set activeUser state
+    setActiveUser = (val) => {
+        if (val) {
+            localStorage.setItem("yakId", val)
+        } else {
+            localStorage.removeItem("yakId")
+        }
+        this.setState({
+            activeUser: val
+        })
+    }
+
     // View switcher -> passed to NavBar and Login
     showView = function (e) {
-        if (e.target) {
-            this.setState({
-                currentView: e.target.id.split("__")[1]
-            })
-        } else {
-            this.setState({
-                currentView: e
-            })
+        this.setState({
+            currentView: (e.target) ? e.target.id.split("__")[1] : e
+        })
+
+        // If user clicked logout in nav, empty local storage and update activeUser state
+        if (this.state.currentView === "logout") {
+            this.setActiveUser(null)
         }
     }.bind(this)
 
     // Function to determine which main view to render
     View = function () {
         if (localStorage.getItem("yakId") === null) {
-            return <Login showView={this.showView} />
+            return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
         } else {
             switch(this.state.currentView) {
                 case "home":
                     return <Home />
+                    break
+                case "logout":
+                    return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
                 case "results":
                     return <SearchResults terms={this.state.searchTerms} />
                 default:
@@ -54,7 +68,11 @@ class App extends Component {
     render() {
         return (
             <div>
-                <NavBar viewHandler={this.showView} searchHandler={this.performSearch} />
+                <NavBar viewHandler={this.showView}
+                        searchHandler={this.performSearch}
+                        activeUser={this.state.activeUser}
+                        setActiveUser={this.setActiveUser}
+                />
 
                 {this.View()}
             </div>

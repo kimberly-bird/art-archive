@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
+import yak from "../images/yak.png"
 
 
 export default class NavBar extends Component {
@@ -18,10 +19,20 @@ export default class NavBar extends Component {
         this.props.searchHandler(document.querySelector("#mainSearch").value)
     }.bind(this)
 
+    LoginLogout = () => {
+        if (this.props.activeUser === null) {
+            return <a className="nav-link" id="nav__login" onClick={this.props.viewHandler} href="#">Login <span className="sr-only">(current)</span></a>
+        } else {
+            return <a className="nav-link" id="nav__logout" onClick={this.props.viewHandler} href="#">Logout <span className="sr-only">(current)</span></a>
+        }
+    }
+
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" id="nav__home" onClick={this.props.viewHandler} href="#">Yakkity Yak</a>
+                <a className="navbar-brand" id="nav__home" onClick={this.props.viewHandler} href="#">
+                    <img src={yak} style={{height: `50px`}} />
+                </a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -29,7 +40,7 @@ export default class NavBar extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
-                        <a className="nav-link" id="nav__login" onClick={this.props.viewHandler} href="#">Login <span className="sr-only">(current)</span></a>
+                        <this.LoginLogout/>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" id="nav__profile" onClick={this.props.viewHandler} href="#">Profile</a>
