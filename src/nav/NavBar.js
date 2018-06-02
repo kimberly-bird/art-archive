@@ -4,10 +4,15 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 export default class NavBar extends Component {
 
+    // Set initial state
     state = {
         searchTerms: ""
     }
 
+    /**
+     * Local search handler, which invokes the searchHandler reference
+     * passed from App
+     */
     search = function (e) {
         e.preventDefault()
         this.props.searchHandler(document.querySelector("#mainSearch").value)

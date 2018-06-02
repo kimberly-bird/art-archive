@@ -4,27 +4,35 @@ import "./login.css"
 
 export default class Login extends Component {
 
+    // Set initial state
     state = {
         email: "",
         password: ""
     }
 
+    // Update state whenever an input field is edited
     handleFieldChange = function (evt) {
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }.bind(this)
 
+    // Handle for login submit
     handleLogin = function (e) {
         e.preventDefault()
 
+        // Determine if a user already exists in API
         fetch(`http://localhost:5001/users?email=${this.state.email}`)
             .then(r => r.json())
             .then(user => {
+                // User exists. Set local storage, and show home view
                 if (user.length) {
                     localStorage.setItem("yakId", user[0].id)
                     this.props.showView("home")
+
+                // User doesn't exist
                 } else {
+                    // Create user in API
                     fetch("http://localhost:5001/users", {
                         method: "POST",
                         headers: {
@@ -32,6 +40,8 @@ export default class Login extends Component {
                         },
                         body: JSON.stringify({email: this.state.email, password: this.state.password})
                     })
+
+                    // Set local storage with newly created user's id and show home view
                     .then(newUser => {
                         localStorage.setItem("yakId", newUser.id)
                         this.props.showView("home")
