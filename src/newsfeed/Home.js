@@ -57,7 +57,11 @@ export default class Home extends Component {
                             <form>
                                 <div className="form-group">
                                     <label htmlFor="message"><h5>What would you like to Yak about?</h5></label>
-                                    <textarea id="message" onChange={this.handleFieldChange} className="form-control" rows="3"></textarea>
+                                    <textarea id="message"
+                                              value={this.state.message}
+                                              onChange={this.handleFieldChange}
+                                              className="form-control"
+                                              rows="4"></textarea>
                                 </div>
                                 <button type="button" onClick={this.postMessage} className="btn btn-info btn-lg">Post</button>
                             </form>
