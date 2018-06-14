@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css'
 import NavBar from './nav/NavBar';
-import Home from './newsfeed/Home';
+import Home from './gallery/Home';
 import Login from './auth/Login';
 import SearchResults from './search/SearchResults';
 

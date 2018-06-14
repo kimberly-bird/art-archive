@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "./SearchResults.css"
 import Avatar from "../images/avatar.png"
-import "../newsfeed/Post.css"
+import "../gallery/Artwork"
 
 
 export default class SearchResults extends Component {

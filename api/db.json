@@ -1,0 +1,182 @@
+{
+  "users": [
+    {
+      "email": "steve@stevebrownlee.com",
+      "password": "me",
+      "first_name": "Steve",
+      "last_name": "Brownlee",
+      "id": 1
+    },
+    {
+      "email": "joe@shepherd.com",
+      "password": "me",
+      "first_name": "Joe",
+      "last_name": "Shepherd",
+      "id": 2
+    },
+    {
+      "email": "jisie@david.com",
+      "password": "me",
+      "first_name": "Jisie",
+      "last_name": "David",
+      "id": 3
+    },
+    {
+      "email": "meg@ducharme.com",
+      "password": "me",
+      "first_name": "Meg",
+      "last_name": "Ducharme",
+      "id": 4
+    },
+    {
+      "email": "kimmy@bird.com",
+      "password": "me",
+      "first_name": "Kimmy",
+      "last_name": "Bird",
+      "id": 5
+    }
+  ],
+  "artwork": [
+    {
+      "id": 1,
+      "userId": 5,
+      "title": "Seaside",
+      "image_url": "./images/seaside.jpg",
+      "typeId": 1,
+      "artistId": 1,
+      "year_signed": "1952",
+      "location_created": "Chicago, Illinois, USA",
+      "size": "25x20",
+      "framed": true,
+      "conditionId": 1,
+      "ownerId": 1,
+      "notes": "Won an award at the Chicago's Art Guild"
+    },
+    {
+      "id": 2,
+      "userId": 5,
+      "title": "Chicago's Only Vertical Suburb",
+      "typeId": 3,
+      "image_url": "../images/vertical.jpg",
+      "artistId": 1,
+      "year_signed": "1960s",
+      "location_created": "Chicago, Illinois, USA",
+      "size": "8x11",
+      "framed": true,
+      "conditionId": 1,
+      "ownerId": 1,
+      "notes": "Has a matching mock up"
+    },
+    {
+      "id": 3,
+      "userId": 5,
+      "title": "Live Upstairs, Work Downstairs",
+      "image_url": "../images/live_upstairs.jpg",
+      "typeId": 3,
+      "artistId": 1,
+      "year_signed": "1960s",
+      "location_created": "Chicago, Illinois, USA",
+      "size": "8x11",
+      "framed": true,
+      "conditionId": 1,
+      "ownerId": 1,
+      "notes": "Has a matching mock up"
+    },
+    {
+      "title": "New Mexico Cathedral",
+      "image_url": "C:\\fakepath\\fam.jpg",
+      "year_signed": "1953-01-01",
+      "location_created": "Chicago, Illinois, USA",
+      "size": "25x20",
+      "notes": "Have a photo of grandma Carole in front of cathedral",
+      "userId": "5",
+      "id": 4
+    },
+    {
+      "title": "test",
+      "image_url": "C:\\fakepath\\Screen Shot 2018-06-07 at 10.22.18 AM.png",
+      "year_signed": "2018-06-09",
+      "location_created": "sataw",
+      "size": "wataw",
+      "notes": "awtawr",
+      "userId": "5",
+      "id": 5
+    },
+    {
+      "title": "test",
+      "image_url": "C:\\fakepath\\Screen Shot 2018-06-07 at 10.22.18 AM.png",
+      "year_signed": "2018-06-23",
+      "location_created": "wta",
+      "size": "wwr",
+      "notes": "watw",
+      "userId": "5",
+      "id": 6
+    }
+  ],
+  "types": [
+    {
+      "id": 1,
+      "name": "Oil Painting"
+    },
+    {
+      "id": 2,
+      "name": "Advertising Print"
+    },
+    {
+      "id": 3,
+      "name": "Advertising Mockup"
+    },
+    {
+      "id": 4,
+      "name": "Watercolor Painting"
+    }
+  ],
+  "artists": [
+    {
+      "id": 1,
+      "first_name": "Luther",
+      "last_name": "Johnson",
+      "dob": "",
+      "death_date": ""
+    },
+    {
+      "id": 2,
+      "first_name": "Suzy",
+      "last_name": "West",
+      "dob": "1963-04-01",
+      "death_date": null
+    }
+  ],
+  "owners": [
+    {
+      "id": 1,
+      "first_name": "Kimmy",
+      "last_name": "Bird",
+      "current_location": "Nashville, Tennessee, USA"
+    },
+    {
+      "id": 2,
+      "first_name": "Suzy",
+      "last_name": "West",
+      "current_location": "Salt Lake City, Utah, USA"
+    }
+  ],
+  "conditions": [
+    {
+      "id": 1,
+      "name": "excellent"
+    },
+    {
+      "id": 2,
+      "name": "good"
+    },
+    {
+      "id": 3,
+      "name": "fair"
+    },
+    {
+      "id": 4,
+      "name": "poor"
+    }
+  ]
+}
