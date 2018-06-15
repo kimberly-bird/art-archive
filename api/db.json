@@ -41,7 +41,7 @@
       "id": 1,
       "userId": 5,
       "title": "Seaside",
-      "image_url": "./images/seaside.jpg",
+      "image_url": "seaside.jpg",
       "typeId": 1,
       "artistId": 1,
       "year_signed": "1952",
@@ -81,36 +81,6 @@
       "conditionId": 1,
       "ownerId": 1,
       "notes": "Has a matching mock up"
-    },
-    {
-      "title": "New Mexico Cathedral",
-      "image_url": "C:\\fakepath\\fam.jpg",
-      "year_signed": "1953-01-01",
-      "location_created": "Chicago, Illinois, USA",
-      "size": "25x20",
-      "notes": "Have a photo of grandma Carole in front of cathedral",
-      "userId": "5",
-      "id": 4
-    },
-    {
-      "title": "test",
-      "image_url": "C:\\fakepath\\Screen Shot 2018-06-07 at 10.22.18 AM.png",
-      "year_signed": "2018-06-09",
-      "location_created": "sataw",
-      "size": "wataw",
-      "notes": "awtawr",
-      "userId": "5",
-      "id": 5
-    },
-    {
-      "title": "test",
-      "image_url": "C:\\fakepath\\Screen Shot 2018-06-07 at 10.22.18 AM.png",
-      "year_signed": "2018-06-23",
-      "location_created": "wta",
-      "size": "wwr",
-      "notes": "watw",
-      "userId": "5",
-      "id": 6
     }
   ],
   "types": [

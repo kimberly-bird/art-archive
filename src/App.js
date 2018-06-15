@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css'
 import NavBar from './nav/NavBar';
-import Home from './gallery/Home';
+import Gallery from './gallery/Gallery';
 import Login from './auth/Login';
 import SearchResults from './search/SearchResults';
 
@@ -71,9 +71,9 @@ class App extends Component {
                     return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
                 case "results":
                     return <SearchResults terms={this.state.searchTerms} />
-                case "home":
+                case "gallery":
                 default:
-                    return <Home activeUser={this.state.activeUser} />
+                    return <Gallery activeUser={this.state.activeUser} />
             }
         }
     }
