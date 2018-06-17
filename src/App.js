@@ -6,6 +6,7 @@ import Gallery from './gallery/Gallery';
 import Login from './auth/Login';
 import SearchResults from './search/SearchResults';
 
+
 class App extends Component {
 
     // Set initial state
