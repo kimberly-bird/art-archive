@@ -81,6 +81,21 @@
       "conditionId": 1,
       "ownerId": 1,
       "notes": "Has a matching mock up"
+    },
+    {
+      "userId": 5,
+      "image_url": "../images/live_upstairs.jpg",
+      "typeId": 3,
+      "title": "test",
+      "artistId": 1,
+      "year_signed": "1932-11-11",
+      "location_created": "wta",
+      "framed": true,
+      "size": "wwr",
+      "conditionId": 1,
+      "notes": "testing",
+      "ownerId": 1,
+      "id": 4
     }
   ],
   "types": [

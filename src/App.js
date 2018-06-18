@@ -5,6 +5,7 @@ import NavBar from './nav/NavBar';
 import Gallery from './gallery/Gallery';
 import Login from './auth/Login';
 import SearchResults from './search/SearchResults';
+import AddArtwork from './gallery/AddArtwork';
 
 
 class App extends Component {
@@ -12,16 +13,21 @@ class App extends Component {
     // Set initial state
     state = {
         currentView: "login",
-        searchTerms: "",
+        // searchTerms: "",
         activeUser: localStorage.getItem("yakId")
     }
 
     // Search handler -> passed to NavBar
-    performSearch = function (terms) {
-        this.setState({
-            searchTerms: terms,
-            currentView: "results"
-        })
+    // performSearch = function (terms) {
+    //     this.setState({
+    //         searchTerms: terms,
+    //         currentView: "results"
+    //     })
+    // }.bind(this)
+
+    addArtwork = function (e) {
+        console.log("button clicked");
+        this.setState({ currentView: "addArtwork" })
     }.bind(this)
 
     // Function to update local storage and set activeUser state
@@ -70,8 +76,10 @@ class App extends Component {
             switch (this.state.currentView) {
                 case "logout":
                     return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
-                case "results":
-                    return <SearchResults terms={this.state.searchTerms} />
+                // case "results":
+                //     return <SearchResults terms={this.state.searchTerms} />
+                case "addArtwork":
+                    return <AddArtwork showView={this.showView} />
                 case "gallery":
                 default:
                     return <Gallery activeUser={this.state.activeUser} />
@@ -83,9 +91,10 @@ class App extends Component {
         return (
             <article>
                 <NavBar viewHandler={this.showView}
-                    searchHandler={this.performSearch}
+                    // searchHandler={this.performSearch}
                     activeUser={this.state.activeUser}
                     setActiveUser={this.setActiveUser}
+                    newArtHandler={this.addArtwork}
                 />
 
                 {this.View()}

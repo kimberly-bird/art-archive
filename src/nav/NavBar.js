@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import artImg from "../images/art-archive.png"
 import $ from "jquery"
 import profilepic from "../images/profile.png"
+import { Button } from "react-bootstrap"
 import "./NavBar.css"
 
 
@@ -9,7 +10,8 @@ export default class NavBar extends Component {
 
     // Set initial state
     state = {
-        searchTerms: ""
+        searchTerms: "",
+        currentView: ""
     }
 
     /**
@@ -22,22 +24,30 @@ export default class NavBar extends Component {
             this.setState({ searchTerms: "" })
         }
     }
-
+    
     LoginLogout = () => {
         if (this.props.activeUser === null) {
             return <a className="nav-link" id="nav__login"
-                onClick={this.props.viewHandler} href="#">Login</a>
+            onClick={this.props.viewHandler} href="#">Login</a>
         } else {
             return <a className="nav-link" id="nav__logout"
-                onClick={this.props.viewHandler} href="#">Logout</a>
+            onClick={this.props.viewHandler} href="#">Logout</a>
         }
     }
-
-    handleFieldChange = (evt) => {
-        const stateToChange = {}
-        stateToChange[evt.target.id] = evt.target.value
-        this.setState(stateToChange)
-    }
+    
+    // handleFieldChange = (evt) => {
+        //     const stateToChange = {}
+        //     stateToChange[evt.target.id] = evt.target.value
+        //     this.setState(stateToChange)
+        // }
+        
+        // add artwork affordance 
+        addArtworkAffordance = function (e) {
+            e.preventDefault()
+            console.log("button clicked");
+            this.props.newArtHandler(this.state.currentView)
+        this.setState({ currentView: "addArtwork" })
+    }.bind(this)
 
     render() {
         return (
@@ -45,21 +55,25 @@ export default class NavBar extends Component {
                 <a className="navbar-brand col-sm-3 col-md-2 mr-0" onClick={this.props.viewHandler} href="#">
                     <img id="nav__home" src={artImg} style={{ height: `75px` }} />
                 </a>
-                <input id="searchTerms"
+
+                <Button className="addArtBtn" bsStyle="info" bsSize="large" onClick={this.addArtworkAffordance} >
+                +
+                </Button>
+                {/* <input id="searchTerms"
                     value={this.state.searchTerms}
                     onChange={this.handleFieldChange}
                     onKeyPress={this.search}
                     className="form-control w-100"
                     type="search"
                     placeholder="Search"
-                    aria-label="Search" />
+                    aria-label="Search" /> */}
                 <ul className="navbar-nav px-3">
                     <li className="nav-item text-nowrap">
                         <a className="nav-link" id="nav__profile"
                             onClick={this.props.viewHandler} href="#">
                             <img id="navimg__profile"
-                                 onClick={()=>$(".profileMenu").slideToggle(333)}
-                                 src={profilepic} style={{ height: `30px` }} />
+                                onClick={() => $(".profileMenu").slideToggle(333)}
+                                src={profilepic} style={{ height: `30px` }} />
                         </a>
                     </li>
                 </ul>
