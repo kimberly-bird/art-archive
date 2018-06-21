@@ -1,3 +1,13 @@
 #add__art__form {
-    margin-top: 6em;
+    margin: 7em 25% 0 25%;
+    text-align: center;
+}
+
+.art__notes {
+    margin: 0;
+}
+
+.art__checkbox {
+    width: 40%;
+    margin: auto;
 }
