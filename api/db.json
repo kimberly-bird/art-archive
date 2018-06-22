@@ -38,21 +38,6 @@
   ],
   "artwork": [
     {
-      "id": 1,
-      "userId": 5,
-      "title": "Seaside",
-      "image_url": "../src/images/seaside.jpg",
-      "typeId": 1,
-      "artistId": 1,
-      "year_signed": "1952",
-      "location_created": "Chicago, Illinois, USA",
-      "size": "25x20",
-      "framed": true,
-      "conditionId": 1,
-      "ownerId": 1,
-      "notes": "Won an award at the Chicago's Art Guild"
-    },
-    {
       "id": 2,
       "userId": 2,
       "title": "Chicago's Only Vertical Suburb",
@@ -83,19 +68,52 @@
       "notes": "Has a matching mock up"
     },
     {
-      "userId": 5,
-      "image_url": "../images/live_upstairs.jpg",
+      "title": "Live Upstairs",
       "typeId": 3,
-      "title": "test",
       "artistId": 1,
-      "year_signed": "1932-11-11",
-      "location_created": "wta",
       "framed": true,
-      "size": "wwr",
       "conditionId": 1,
-      "notes": "testing",
       "ownerId": 1,
-      "id": 4
+      "image_url": "https://res.cloudinary.com/art-archive/image/upload/v1529686092/sjezlsznxc2nm7qqdd4g.jpg",
+      "year_signed": "1960",
+      "location_created": "Chicago, IL, USA",
+      "size": "8x11",
+      "notes": "Has matching design",
+      "userId": 5,
+      "id": 5
+    },
+    {
+      "title": "Chicago's only vertical suburb",
+      "image_url": "https://res.cloudinary.com/art-archive/image/upload/v1529686446/mihkhiqogw3ju8b9knl5.jpg",
+      "year_signed": "1960",
+      "location_created": "Chicago, IL, USA",
+      "size": "8x11",
+      "notes": "Has matching design",
+      "userId": 5,
+      "id": 6
+    },
+    {
+      "title": "Seaside",
+      "image_url": "https://res.cloudinary.com/art-archive/image/upload/v1529686563/zfb9t1r296ghc4we54u9.jpg",
+      "year_signed": "1953",
+      "location_created": "Chicago, IL, USA",
+      "size": "15x11",
+      "notes": "Won award at a Chicago's Artist Guild competition",
+      "userId": 5,
+      "id": 7
+    },
+    {
+      "title": "test",
+      "image_url": "https://res.cloudinary.com/art-archive/image/upload/v1529689554/qvixll1eu1qcqkb9pp1z.jpg",
+      "userId": 5,
+      "id": 8
+    },
+    {
+      "timestamp": 1529690615057,
+      "title": "test",
+      "image_url": "",
+      "userId": 5,
+      "id": 9
     }
   ],
   "types": [

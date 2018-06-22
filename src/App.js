@@ -80,7 +80,7 @@ class App extends Component {
                 case "logout":
                     return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
                 case "addArtwork":
-                    return <AddArtwork showView={this.showView} />
+                    return <AddArtwork showView={this.showView} displayAllArtwork={this.displayAllArtwork} />
                 case "gallery":
                 default:
                     return <Gallery activeUser={this.state.activeUser} displayAllArtwork={this.displayAllArtwork} artwork={this.state.artwork}/>

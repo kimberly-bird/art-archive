@@ -50,25 +50,50 @@ export default class AddArtwork extends Component {
         });
     }
 
-    postNewArtwork = (text) => fetch("http://localhost:5001/artwork", {
+    checking = function () {
+        fetch("http://localhost:5001/types")
+        .then(r => r.json())
+        .then(type =>
+            console.log(type)
+        )
+    }
+
+    componentDidMount() {
+        this.checking()
+    }
+
+    postNewArtwork = (e) => {
+        e.preventDefault();
+
+        fetch("http://localhost:5001/types")
+        .then(r => r.json())
+        .then(type =>
+            console.log(type)
+        )
+            
+
+        let dataToPost = {
+            timestamp: Date.now(),
+            title: this.state.title,
+            image_url: this.state.uploadedFileCloudinaryUrl,
+            year_signed: this.state.year_signed,
+            location_created: this.state.location_created,
+            size: this.state.size,
+            notes: this.state.notes,
+            typeId: this.state.typeId,
+            artistId: this.state.artistId,
+            framed: this.state.framed,
+            conditionId: this.state.conditionId,
+            ownerId: this.state.ownerId,
+            userId: parseInt(activeUser)
+        }
+
+        fetch("http://localhost:5001/artwork?userId=5&_expand=user&_expand=artist&_expand=type&_expand=condition&_expand=owner", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            title: this.state.title,
-            image_url: this.state.uploadedFileCloudinaryUrl,
-            typeId: this.state.typeId,
-            artistId: this.state.artistId,
-            year_signed: this.state.year_signed,
-            location_created: this.state.location_created,
-            size: this.state.size,
-            framed: this.state.framed,
-            conditionId: this.state.conditionId,
-            ownerId: this.state.ownerId,
-            notes: this.state.notes,
-            userId: parseInt(activeUser)
-        })
+        body: JSON.stringify(dataToPost)
     })
         .then(() => {
             return fetch(`http://localhost:5001/artwork?userId=${activeUser}&_expand=user`)
@@ -76,10 +101,11 @@ export default class AddArtwork extends Component {
         .then(r => r.json())
         .then(artwork => {
             this.setState({
-                artwork: artwork,
-                currentView: "gallery"
+                artwork: artwork
             })
+            this.props.displayAllArtwork()
         })
+    }
 
     handleFieldChange = (evt) => {
         const stateToChange = {}
