@@ -65,11 +65,11 @@ export default class AddArtwork extends Component {
     postNewArtwork = (e) => {
         e.preventDefault();
 
-        fetch("http://localhost:5001/types")
-        .then(r => r.json())
-        .then(type =>
-            console.log(type)
-        )
+        // fetch("http://localhost:5001/types")
+        // .then(r => r.json())
+        // .then(type =>
+        //     this.setState({ type: type })
+        // )
             
 
         let dataToPost = {
@@ -80,7 +80,7 @@ export default class AddArtwork extends Component {
             location_created: this.state.location_created,
             size: this.state.size,
             notes: this.state.notes,
-            typeId: this.state.typeId,
+            typeId: parseInt(this.state.typeId),
             artistId: this.state.artistId,
             framed: this.state.framed,
             conditionId: this.state.conditionId,
@@ -114,7 +114,7 @@ export default class AddArtwork extends Component {
     }
 
 
-    // TO DO : on click, render gallery view
+    // TO DO : form to connect with foreign keys
     render() {
 
         return (
@@ -161,10 +161,10 @@ export default class AddArtwork extends Component {
                                 onChange={this.handleFieldChange}
                                 className="custom-select">
                                 <option defaultValue="Select">Select... </option>
-                                <option value="Oil Painting">Oil Painting</option>
-                                <option value="Advertising Print">Advertising Print</option>
-                                <option value="Advertising Mockup">Advertising Mockup</option>
-                                <option value="Watercolor Painting">Watercolor Painting</option>
+                                <option value="1">Oil Painting</option>
+                                <option value="2">Advertising Print</option>
+                                <option value="3">Advertising Mockup</option>
+                                <option value="4">Watercolor Painting</option>
                             </select>
                         </div>
 

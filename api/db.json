@@ -101,19 +101,6 @@
       "notes": "Won award at a Chicago's Artist Guild competition",
       "userId": 5,
       "id": 7
-    },
-    {
-      "title": "test",
-      "image_url": "https://res.cloudinary.com/art-archive/image/upload/v1529689554/qvixll1eu1qcqkb9pp1z.jpg",
-      "userId": 5,
-      "id": 8
-    },
-    {
-      "timestamp": 1529690615057,
-      "title": "test",
-      "image_url": "",
-      "userId": 5,
-      "id": 9
     }
   ],
   "types": [
