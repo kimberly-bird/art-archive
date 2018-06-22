@@ -11,3 +11,12 @@
     width: 40%;
     margin: auto;
 }
+
+.img__preview {
+    max-height: 300px;
+}
+
+.img__upload {
+    margin: auto;
+    width: 32%;
+}

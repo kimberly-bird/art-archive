@@ -25,10 +25,10 @@ export default class Login extends Component {
         fetch(`http://localhost:5001/users?email=${this.state.email}`)
             .then(r => r.json())
             .then(user => {
-                // User exists. Set local storage, and show home view
+                // User exists. Set local storage, and show gallery view
                 if (user.length) {
                     this.props.setActiveUser(user[0].id)
-                    this.props.showView("home")
+                    this.props.showView("gallery")
 
                 // User doesn't exist
                 } else {
@@ -41,10 +41,10 @@ export default class Login extends Component {
                         body: JSON.stringify({email: this.state.email, password: this.state.password})
                     })
 
-                    // Set local storage with newly created user's id and show home view
+                    // Set local storage with newly created user's id and show gallery view
                     .then(newUser => {
                         this.props.setActiveUser(newUser.id)
-                        this.props.showView("home")
+                        this.props.showView("gallery")
                     })
                 }
 

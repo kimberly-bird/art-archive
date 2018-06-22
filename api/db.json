@@ -41,7 +41,7 @@
       "id": 1,
       "userId": 5,
       "title": "Seaside",
-      "image_url": "seaside.jpg",
+      "image_url": "../src/images/seaside.jpg",
       "typeId": 1,
       "artistId": 1,
       "year_signed": "1952",
@@ -54,7 +54,7 @@
     },
     {
       "id": 2,
-      "userId": 5,
+      "userId": 2,
       "title": "Chicago's Only Vertical Suburb",
       "typeId": 3,
       "image_url": "../images/vertical.jpg",
@@ -69,7 +69,7 @@
     },
     {
       "id": 3,
-      "userId": 5,
+      "userId": 4,
       "title": "Live Upstairs, Work Downstairs",
       "image_url": "../images/live_upstairs.jpg",
       "typeId": 3,

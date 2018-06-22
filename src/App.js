@@ -4,29 +4,32 @@ import './App.css'
 import NavBar from './nav/NavBar';
 import Gallery from './gallery/Gallery';
 import Login from './auth/Login';
-import SearchResults from './search/SearchResults';
 import AddArtwork from './gallery/AddArtwork';
 
+// get logged in userId
+const activeUser = localStorage.getItem("yakId")
 
 class App extends Component {
 
     // Set initial state
     state = {
         currentView: "login",
-        // searchTerms: "",
-        activeUser: localStorage.getItem("yakId")
+        activeUser: localStorage.getItem("yakId"),
+        artwork: []
     }
 
-    // Search handler -> passed to NavBar
-    // performSearch = function (terms) {
-    //     this.setState({
-    //         searchTerms: terms,
-    //         currentView: "results"
-    //     })
-    // }.bind(this)
+    displayAllArtwork = function () {
+        fetch(`http://localhost:5001/artwork?userId=${activeUser}&_expand=user&_sort=title&_order=desc`)
+            .then(r => r.json())
+            .then(artwork =>
+                this.setState({
+                    artwork: artwork,
+                    currentView: "gallery"
+                })
+            )
+    }.bind(this)
 
     addArtwork = function (e) {
-        console.log("button clicked");
         this.setState({ currentView: "addArtwork" })
     }.bind(this)
 
@@ -76,13 +79,11 @@ class App extends Component {
             switch (this.state.currentView) {
                 case "logout":
                     return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
-                // case "results":
-                //     return <SearchResults terms={this.state.searchTerms} />
                 case "addArtwork":
                     return <AddArtwork showView={this.showView} />
                 case "gallery":
                 default:
-                    return <Gallery activeUser={this.state.activeUser} />
+                    return <Gallery activeUser={this.state.activeUser} displayAllArtwork={this.displayAllArtwork} artwork={this.state.artwork}/>
             }
         }
     }
@@ -91,10 +92,10 @@ class App extends Component {
         return (
             <article>
                 <NavBar viewHandler={this.showView}
-                    // searchHandler={this.performSearch}
                     activeUser={this.state.activeUser}
                     setActiveUser={this.setActiveUser}
                     newArtHandler={this.addArtwork}
+                    displayAllArtwork={this.displayAllArtwork}
                 />
 
                 {this.View()}
