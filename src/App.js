@@ -5,6 +5,7 @@ import NavBar from './nav/NavBar';
 import Gallery from './gallery/Gallery';
 import Login from './auth/Login';
 import AddArtwork from './gallery/AddArtwork';
+import TypeList from "./types/TypeList"
 
 // get logged in userId
 const activeUser = localStorage.getItem("yakId")
@@ -15,7 +16,26 @@ class App extends Component {
     state = {
         currentView: "login",
         activeUser: localStorage.getItem("yakId"),
-        artwork: []
+        artwork: [],
+        response: []
+    }
+
+    // API Manager
+    getAll = function (resource, view) {
+        fetch(`http://localhost:5001/${resource}`)
+            .then(r => r.json())
+            .then(response =>
+                this.setState({
+                    response: response,
+                    currentView: view
+                })
+            )
+        }
+
+    ///////////////////////////////////
+
+    getTypes = function (e) {
+        this.getAll("types", "types")
     }
 
     displayAllArtwork = function () {
@@ -81,9 +101,11 @@ class App extends Component {
                     return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
                 case "addArtwork":
                     return <AddArtwork showView={this.showView} displayAllArtwork={this.displayAllArtwork} />
+                case "types":
+                    return <TypeList showView={this.showView} getTypes={this.getTypes}/>
                 case "gallery":
                 default:
-                    return <Gallery activeUser={this.state.activeUser} displayAllArtwork={this.displayAllArtwork} artwork={this.state.artwork}/>
+                    return <Gallery activeUser={this.state.activeUser} displayAllArtwork={this.displayAllArtwork} artwork={this.state.artwork} />
             }
         }
     }
@@ -96,6 +118,7 @@ class App extends Component {
                     setActiveUser={this.setActiveUser}
                     newArtHandler={this.addArtwork}
                     displayAllArtwork={this.displayAllArtwork}
+                    // getTypes={this.getTypes}
                 />
 
                 {this.View()}

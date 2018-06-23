@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import "./AddArtwork.css"
+import { parse } from "url";
 
 // variables to handle connection with cloudinary (images)
 const CLOUDINARY_UPLOAD_PRESET = 'fiorembk';
@@ -65,13 +66,6 @@ export default class AddArtwork extends Component {
     postNewArtwork = (e) => {
         e.preventDefault();
 
-        // fetch("http://localhost:5001/types")
-        // .then(r => r.json())
-        // .then(type =>
-        //     this.setState({ type: type })
-        // )
-            
-
         let dataToPost = {
             timestamp: Date.now(),
             title: this.state.title,
@@ -94,8 +88,10 @@ export default class AddArtwork extends Component {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(dataToPost)
+        
     })
-        .then(() => {
+    .then(() => {
+        console.log(dataToPost);
             return fetch(`http://localhost:5001/artwork?userId=${activeUser}&_expand=user`)
         })
         .then(r => r.json())
@@ -107,12 +103,11 @@ export default class AddArtwork extends Component {
         })
     }
 
-    handleFieldChange = (evt) => {
+    handleFieldChange = function (evt) {
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
-    }
-
+    }.bind(this)
 
     // TO DO : form to connect with foreign keys
     render() {
