@@ -17,7 +17,8 @@ class App extends Component {
         currentView: "login",
         activeUser: localStorage.getItem("yakId"),
         artwork: [],
-        response: []
+        response: [],
+        types: []
     }
 
     // API Manager
@@ -35,7 +36,18 @@ class App extends Component {
     ///////////////////////////////////
 
     getTypes = function (e) {
-        this.getAll("types", "types")
+        fetch("http://localhost:5001/types")
+        .then(r => r.json())
+        .then(response =>
+            this.setState({
+                types: response,
+                // currentView: "types"
+            })
+        )
+    }.bind(this)
+
+    componentDidMount() {
+        this.getTypes()
     }
 
     displayAllArtwork = function () {
@@ -51,6 +63,10 @@ class App extends Component {
 
     addArtwork = function (e) {
         this.setState({ currentView: "addArtwork" })
+    }.bind(this)
+
+    getAllTypes = function (e) {
+        this.setState({ currentView: "types" })
     }.bind(this)
 
     // Function to update local storage and set activeUser state
@@ -100,12 +116,12 @@ class App extends Component {
                 case "logout":
                     return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
                 case "addArtwork":
-                    return <AddArtwork showView={this.showView} displayAllArtwork={this.displayAllArtwork} />
+                    return <AddArtwork showView={this.showView} displayAllArtwork={this.displayAllArtwork} types={this.state.types} />
                 case "types":
-                    return <TypeList showView={this.showView} getTypes={this.getTypes}/>
+                    return <TypeList showView={this.showView} getTypes={this.getTypes} types={this.state.types}/>
                 case "gallery":
                 default:
-                    return <Gallery activeUser={this.state.activeUser} displayAllArtwork={this.displayAllArtwork} artwork={this.state.artwork} />
+                    return <Gallery activeUser={this.state.activeUser} displayAllArtwork={this.displayAllArtwork} artwork={this.state.artwork} getTypes={this.getTypes} />
             }
         }
     }
@@ -118,7 +134,7 @@ class App extends Component {
                     setActiveUser={this.setActiveUser}
                     newArtHandler={this.addArtwork}
                     displayAllArtwork={this.displayAllArtwork}
-                    // getTypes={this.getTypes}
+                    typeHandler={this.getAllTypes}
                 />
 
                 {this.View()}

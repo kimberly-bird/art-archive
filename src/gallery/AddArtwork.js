@@ -7,10 +7,9 @@ import { parse } from "url";
 // variables to handle connection with cloudinary (images)
 const CLOUDINARY_UPLOAD_PRESET = 'fiorembk';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/art-archive/upload';
-   
+
 // get logged in userId
 const activeUser = localStorage.getItem("yakId")
-
 
 export default class AddArtwork extends Component {
     constructor(props) {
@@ -28,7 +27,6 @@ export default class AddArtwork extends Component {
         this.setState({
             uploadedFile: files[0]
         });
-
         this.handleImageUpload(files[0]);
     }
 
@@ -37,30 +35,16 @@ export default class AddArtwork extends Component {
         let upload = request.post(CLOUDINARY_UPLOAD_URL)
             .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
             .field('file', file);
-
         upload.end((err, response) => {
             if (err) {
                 console.error(err);
             }
-
             if (response.body.secure_url !== '') {
                 this.setState({
                     uploadedFileCloudinaryUrl: response.body.secure_url
                 });
             }
         });
-    }
-
-    checking = function () {
-        fetch("http://localhost:5001/types")
-        .then(r => r.json())
-        .then(type =>
-            console.log(type)
-        )
-    }
-
-    componentDidMount() {
-        this.checking()
     }
 
     postNewArtwork = (e) => {
@@ -75,7 +59,7 @@ export default class AddArtwork extends Component {
             size: this.state.size,
             notes: this.state.notes,
             typeId: parseInt(this.state.typeId),
-            artistId: this.state.artistId,
+            artistId: parseInt(this.state.artistId),
             framed: this.state.framed,
             conditionId: this.state.conditionId,
             ownerId: this.state.ownerId,
@@ -83,30 +67,32 @@ export default class AddArtwork extends Component {
         }
 
         fetch("http://localhost:5001/artwork?userId=5&_expand=user&_expand=artist&_expand=type&_expand=condition&_expand=owner", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(dataToPost)
-        
-    })
-    .then(() => {
-        console.log(dataToPost);
-            return fetch(`http://localhost:5001/artwork?userId=${activeUser}&_expand=user`)
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dataToPost)
+
         })
-        .then(r => r.json())
-        .then(artwork => {
-            this.setState({
-                artwork: artwork
+            .then(() => {
+                console.log(dataToPost);
+                return fetch(`http://localhost:5001/artwork?userId=${activeUser}&_expand=user`)
             })
-            this.props.displayAllArtwork()
-        })
+            .then(r => r.json())
+            .then(artwork => {
+                this.setState({
+                    artwork: artwork
+                })
+                this.props.displayAllArtwork()
+            })
     }
 
     handleFieldChange = function (evt) {
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
+        console.log(stateToChange);
+        
     }.bind(this)
 
     // TO DO : form to connect with foreign keys
@@ -124,7 +110,7 @@ export default class AddArtwork extends Component {
                                 multiple={false}
                                 accept="image/*"
                                 onDrop={this.onImageDrop.bind(this)}
-                                >
+                            >
                                 <p>Drop an image or click to select a file to upload.</p>
                             </Dropzone>
                         </div>
@@ -151,15 +137,15 @@ export default class AddArtwork extends Component {
                                 <label className="input-group-text" htmlFor="inputGroupSelect01">Type of Artwork</label>
                             </div>
                             <select
-                                id="type"
+                                id="typeId"
                                 value={this.state.typeId}
                                 onChange={this.handleFieldChange}
                                 className="custom-select">
                                 <option defaultValue="Select">Select... </option>
-                                <option value="1">Oil Painting</option>
-                                <option value="2">Advertising Print</option>
-                                <option value="3">Advertising Mockup</option>
-                                <option value="4">Watercolor Painting</option>
+                                {
+                                    this.props.types.map(t =>
+                                        <option value={t.id} key={t.id}>{t.name}</option>)
+                                }
                             </select>
                         </div>
 
@@ -167,7 +153,7 @@ export default class AddArtwork extends Component {
                             <div className="input-group-prepend">
                                 <label className="input-group-text" htmlFor="inputGroupSelect01">Artist</label>
                             </div>
-                            <select id="artist"
+                            <select id="artistId"
                                 value={this.state.artistId}
                                 onChange={this.handleFieldChange}
                                 className="custom-select">

@@ -30,6 +30,12 @@ export default class NavBar extends Component {
         this.setState({ currentView: "addArtwork" })
     }.bind(this)
 
+    typesView = function (e) {
+        e.preventDefault()
+        this.props.typeHandler(this.state.currentView)
+        this.setState({ currentView: "types" })
+    }.bind(this)
+
     render() {
         return (
             <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
@@ -40,6 +46,8 @@ export default class NavBar extends Component {
                 <Button className="addArtBtn" bsStyle="info" bsSize="large" onClick={this.addArtworkAffordance} >
                     +
                 </Button>
+
+                <a href="#" onClick={this.typesView}>Types</a>
 
                 <ul className="navbar-nav px-3">
                     <li className="nav-item text-nowrap">
@@ -59,7 +67,7 @@ export default class NavBar extends Component {
                 <article className="profileMenu">
                     <section className="profileMenu__item">
                         <div><a title="notifications" id="nav__notifications" href="#">Notifications</a></div>
-                        <div><a title="notifications" id="nav__profile" href="#" onClick={this.props.viewHandler}>Types of Artwork</a></div>
+                        {/* <div><a title="notifications" id="nav__profile" href="#" onClick={this.props.viewHandler}>Types of Artwork</a></div> */}
                         <div><a title="notifications" id="nav__followers" href="#">My Followers</a></div>
                         <div><a title="notifications" id="nav__friends" href="#">My Friends</a></div>
                     </section>
