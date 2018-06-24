@@ -62,7 +62,7 @@ export default class AddArtwork extends Component {
             artistId: parseInt(this.state.artistId),
             framed: this.state.framed,
             conditionId: parseInt(this.state.conditionId),
-            ownerId: this.state.ownerId,
+            ownerId: parseInt(this.state.ownerId),
             userId: parseInt(activeUser)
         }
 
@@ -222,15 +222,15 @@ export default class AddArtwork extends Component {
                             <div className="input-group-prepend">
                                 <label className="input-group-text" htmlFor="inputGroupSelect01">Current Owner of Artwork</label>
                             </div>
-                            <select id="owner"
+                            <select id="ownerId"
                                 value={this.state.ownerId}
                                 onChange={this.handleFieldChange}
                                 className="custom-select">
                                 <option defaultValue="Select">Select...</option>
-                                <option value="Kimberly Bird">Kimberly Bird</option>
-                                <option value="Suzy West">Suzy West</option>
-                                <option value="June Call">June Call</option>
-                                <option value="Melissa Barnum">Melissa Barnum</option>
+                                {
+                                    this.props.owners.map(o =>
+                                        <option value={o.id} key={o.id}>{o.first_name} {o.last_name}</option>)
+                                }
                             </select>
                         </div>
 

@@ -1,28 +1,28 @@
 import React, { Component } from "react"
-import Artists from "./Artists"
-import "./Artists.css"
+import Owners from "./Owners"
+import "./Owners.css"
 
-export default class ArtistList extends Component {
+export default class OwnerList extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            artists: []
+            owners: []
         }
     }
 
     componentDidMount() {
-        this.props.getArtists()
+        this.props.getOwners()
     }
 
     render() {
         return (
-            <div className="artistList">
-                <h1 className="artistList__header">Artists</h1>
+            <div className="ownerList">
+                <h1 className="ownerList__header">Owners of Artwork</h1>
                 <div className="container">
                     <div className="row">
                         {
-                            this.props.artists.map(a => <Artists getArtists={this.props.getArtists} className="col-sm" key={a.id} artists={a} />)
+                            this.props.owners.map(o => <Owners getOwners={this.props.getOwners} className="col-sm" key={o.id} owners={o} />)
                         }
                     </div>
                 </div>

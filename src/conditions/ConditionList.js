@@ -18,7 +18,7 @@ export default class ConditionList extends Component {
     render() {
         return (
             <div className="conditionList">
-                <h1 className="conditionList__header">Types of Artwork</h1>
+                <h1 className="conditionList__header">Condition of Artwork</h1>
                 <div className="container">
                     <div className="row">
                         {

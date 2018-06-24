@@ -8,6 +8,7 @@ import AddArtwork from './gallery/AddArtwork';
 import TypeList from "./types/TypeList"
 import ArtistList from "./artists/ArtistList"
 import ConditionsList from "./conditions/ConditionList"
+import OwnersList from "./owners/OwnerList"
 
 // get logged in userId
 const activeUser = localStorage.getItem("yakId")
@@ -22,7 +23,8 @@ class App extends Component {
         response: [],
         types: [],
         artists: [],
-        conditions: []
+        conditions: [],
+        owners: []
     }
 
     getTypes = function (e) {
@@ -55,10 +57,21 @@ class App extends Component {
         )
     }.bind(this)
 
+    getOwners = function (e) {
+        fetch("http://localhost:5001/owners")
+        .then(r => r.json())
+        .then(response =>
+            this.setState({
+                owners: response,
+            })
+        )
+    }.bind(this)
+
     componentDidMount() {
         this.getTypes()
         this.getArtists()
         this.getConditions()
+        this.getOwners()
     }
 
     displayAllArtwork = function () {
@@ -86,6 +99,10 @@ class App extends Component {
 
     getAllConditions = function (e) {
         this.setState({ currentView: "conditions" })
+    }.bind(this)
+
+    getAllOwners = function (e) {
+        this.setState({ currentView: "owners" })
     }.bind(this)
 
     // Function to update local storage and set activeUser state
@@ -135,13 +152,15 @@ class App extends Component {
                 case "logout":
                     return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
                 case "addArtwork":
-                    return <AddArtwork showView={this.showView} displayAllArtwork={this.displayAllArtwork} types={this.state.types} artists={this.state.artists} conditions={this.state.conditions}/>
+                    return <AddArtwork showView={this.showView} displayAllArtwork={this.displayAllArtwork} types={this.state.types} artists={this.state.artists} conditions={this.state.conditions} owners={this.state.owners} />
                 case "types":
                     return <TypeList showView={this.showView} getTypes={this.getTypes} types={this.state.types}/>
                 case "artists":
                     return <ArtistList showView={this.showView} getArtists={this.getArtists} artists={this.state.artists}/>
                 case "conditions":
                     return <ConditionsList showView={this.showView} getConditions={this.getConditions} conditions={this.state.conditions}/>
+                case "owners":
+                    return <OwnersList showView={this.showView} getOwners={this.getOwners} owners={this.state.owners}/>
                 case "gallery":
                 default:
                     return <Gallery activeUser={this.state.activeUser} displayAllArtwork={this.displayAllArtwork} artwork={this.state.artwork} getTypes={this.getTypes} />
@@ -160,6 +179,7 @@ class App extends Component {
                     typeHandler={this.getAllTypes}
                     artistHandler={this.getAllArtists}
                     conditionHandler={this.getAllConditions}
+                    ownerHandler={this.getAllOwners}
                 />
 
                 {this.View()}

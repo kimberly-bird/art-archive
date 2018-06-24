@@ -4,11 +4,9 @@ import "./Conditions.css"
 export default class Conditions extends Component {
     render() {
         return (
-            <div className="card condition__card">
-                <div className="card-body">
-                    <h6 className="card-subtitle mb-2">{this.props.conditions.name}</h6>
-                </div>
-            </div>
+            <button type="button" className="btn btn-outline-info btn__conditions">
+                {this.props.conditions.name}
+            </button>
         )
     }
 }
