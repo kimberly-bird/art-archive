@@ -101,14 +101,6 @@
       "notes": "Won award at a Chicago's Artist Guild competition",
       "userId": 5,
       "id": 7
-    },
-    {
-      "timestamp": 1529805984166,
-      "title": "awrwr",
-      "image_url": "",
-      "typeId": 4,
-      "userId": 5,
-      "id": 8
     }
   ],
   "types": [
@@ -162,19 +154,19 @@
   "conditions": [
     {
       "id": 1,
-      "name": "excellent"
+      "name": "Excellent"
     },
     {
       "id": 2,
-      "name": "good"
+      "name": "Good"
     },
     {
       "id": 3,
-      "name": "fair"
+      "name": "Fair"
     },
     {
       "id": 4,
-      "name": "poor"
+      "name": "Poor"
     }
   ]
 }

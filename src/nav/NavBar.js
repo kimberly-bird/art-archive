@@ -36,6 +36,18 @@ export default class NavBar extends Component {
         this.setState({ currentView: "types" })
     }.bind(this)
 
+    artistsView = function (e) {
+        e.preventDefault()
+        this.props.artistHandler(this.state.currentView)
+        this.setState({ currentView: "artists" })
+    }.bind(this)
+
+    conditionsView = function (e) {
+        e.preventDefault()
+        this.props.conditionHandler(this.state.currentView)
+        this.setState({ currentView: "conditions" })
+    }.bind(this)
+
     render() {
         return (
             <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
@@ -48,6 +60,10 @@ export default class NavBar extends Component {
                 </Button>
 
                 <a href="#" onClick={this.typesView}>Types</a>
+
+                <a href="#" onClick={this.artistsView}>Artists</a>
+
+                <a href="#" onClick={this.conditionsView}>Conditions</a>
 
                 <ul className="navbar-nav px-3">
                     <li className="nav-item text-nowrap">
@@ -67,7 +83,6 @@ export default class NavBar extends Component {
                 <article className="profileMenu">
                     <section className="profileMenu__item">
                         <div><a title="notifications" id="nav__notifications" href="#">Notifications</a></div>
-                        {/* <div><a title="notifications" id="nav__profile" href="#" onClick={this.props.viewHandler}>Types of Artwork</a></div> */}
                         <div><a title="notifications" id="nav__followers" href="#">My Followers</a></div>
                         <div><a title="notifications" id="nav__friends" href="#">My Friends</a></div>
                     </section>

@@ -61,7 +61,7 @@ export default class AddArtwork extends Component {
             typeId: parseInt(this.state.typeId),
             artistId: parseInt(this.state.artistId),
             framed: this.state.framed,
-            conditionId: this.state.conditionId,
+            conditionId: parseInt(this.state.conditionId),
             ownerId: this.state.ownerId,
             userId: parseInt(activeUser)
         }
@@ -92,7 +92,7 @@ export default class AddArtwork extends Component {
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
         console.log(stateToChange);
-        
+
     }.bind(this)
 
     // TO DO : form to connect with foreign keys
@@ -158,8 +158,10 @@ export default class AddArtwork extends Component {
                                 onChange={this.handleFieldChange}
                                 className="custom-select">
                                 <option value="Select Artist">Select... </option>
-                                <option value="Luther Johnson">Luther Johnson</option>
-                                <option value="Suzy West">Suzy West</option>
+                                {
+                                    this.props.artists.map(a =>
+                                        <option value={a.id} key={a.id}>{a.first_name} {a.last_name}</option>)
+                                }
                             </select>
                         </div>
 
@@ -204,15 +206,15 @@ export default class AddArtwork extends Component {
                             <div className="input-group-prepend">
                                 <label className="input-group-text" htmlFor="inputGroupSelect01">Condition of Artwork</label>
                             </div>
-                            <select id="condition"
+                            <select id="conditionId"
                                 value={this.state.conditionId}
                                 onChange={this.handleFieldChange}
                                 className="custom-select">
                                 <option defaultValue="Select">Select...</option>
-                                <option value="Exellent">Exellent</option>
-                                <option value="Good">Good</option>
-                                <option value="Fair">Fair</option>
-                                <option value="Poor">Poor</option>
+                                {
+                                    this.props.conditions.map(c =>
+                                        <option value={c.id} key={c.id}>{c.name}</option>)
+                                }
                             </select>
                         </div>
 

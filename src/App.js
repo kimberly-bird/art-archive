@@ -6,6 +6,8 @@ import Gallery from './gallery/Gallery';
 import Login from './auth/Login';
 import AddArtwork from './gallery/AddArtwork';
 import TypeList from "./types/TypeList"
+import ArtistList from "./artists/ArtistList"
+import ConditionsList from "./conditions/ConditionList"
 
 // get logged in userId
 const activeUser = localStorage.getItem("yakId")
@@ -18,22 +20,10 @@ class App extends Component {
         activeUser: localStorage.getItem("yakId"),
         artwork: [],
         response: [],
-        types: []
+        types: [],
+        artists: [],
+        conditions: []
     }
-
-    // API Manager
-    getAll = function (resource, view) {
-        fetch(`http://localhost:5001/${resource}`)
-            .then(r => r.json())
-            .then(response =>
-                this.setState({
-                    response: response,
-                    currentView: view
-                })
-            )
-        }
-
-    ///////////////////////////////////
 
     getTypes = function (e) {
         fetch("http://localhost:5001/types")
@@ -41,13 +31,34 @@ class App extends Component {
         .then(response =>
             this.setState({
                 types: response,
-                // currentView: "types"
+            })
+        )
+    }.bind(this)
+
+    getArtists = function (e) {
+        fetch("http://localhost:5001/artists")
+        .then(r => r.json())
+        .then(response =>
+            this.setState({
+                artists: response,
+            })
+        )
+    }.bind(this)
+
+    getConditions = function (e) {
+        fetch("http://localhost:5001/conditions")
+        .then(r => r.json())
+        .then(response =>
+            this.setState({
+                conditions: response,
             })
         )
     }.bind(this)
 
     componentDidMount() {
         this.getTypes()
+        this.getArtists()
+        this.getConditions()
     }
 
     displayAllArtwork = function () {
@@ -67,6 +78,14 @@ class App extends Component {
 
     getAllTypes = function (e) {
         this.setState({ currentView: "types" })
+    }.bind(this)
+
+    getAllArtists = function (e) {
+        this.setState({ currentView: "artists" })
+    }.bind(this)
+
+    getAllConditions = function (e) {
+        this.setState({ currentView: "conditions" })
     }.bind(this)
 
     // Function to update local storage and set activeUser state
@@ -116,9 +135,13 @@ class App extends Component {
                 case "logout":
                     return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
                 case "addArtwork":
-                    return <AddArtwork showView={this.showView} displayAllArtwork={this.displayAllArtwork} types={this.state.types} />
+                    return <AddArtwork showView={this.showView} displayAllArtwork={this.displayAllArtwork} types={this.state.types} artists={this.state.artists} conditions={this.state.conditions}/>
                 case "types":
                     return <TypeList showView={this.showView} getTypes={this.getTypes} types={this.state.types}/>
+                case "artists":
+                    return <ArtistList showView={this.showView} getArtists={this.getArtists} artists={this.state.artists}/>
+                case "conditions":
+                    return <ConditionsList showView={this.showView} getConditions={this.getConditions} conditions={this.state.conditions}/>
                 case "gallery":
                 default:
                     return <Gallery activeUser={this.state.activeUser} displayAllArtwork={this.displayAllArtwork} artwork={this.state.artwork} getTypes={this.getTypes} />
@@ -135,6 +158,8 @@ class App extends Component {
                     newArtHandler={this.addArtwork}
                     displayAllArtwork={this.displayAllArtwork}
                     typeHandler={this.getAllTypes}
+                    artistHandler={this.getAllArtists}
+                    conditionHandler={this.getAllConditions}
                 />
 
                 {this.View()}
