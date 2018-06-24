@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import artImg from "../images/art-archive.png"
+import artImg from "../images/art_archive_logo.png"
 import $ from "jquery"
 import profilepic from "../images/art_profile.png"
 import gallerypic from "../images/gallery.png"
