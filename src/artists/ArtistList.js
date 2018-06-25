@@ -11,6 +11,8 @@ export default class ArtistList extends Component {
         }
     }
 
+
+
     componentDidMount() {
         this.props.getArtists()
     }
