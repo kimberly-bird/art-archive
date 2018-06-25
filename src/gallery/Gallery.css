@@ -7,3 +7,14 @@
     margin: 150px auto;
     width: 95%;
   } 
+
+.jumbotron__img {
+  margin: 5% auto auto auto;
+  max-height: 250px;
+  display: block;
+}
+
+.jumbotron {
+  height: 300px;
+  background-color: white;
+}

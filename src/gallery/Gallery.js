@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import heroimage from "../images/art_archive_logo_lg.png"
+import { Jumbotron, Button } from "react-bootstrap"
 import "./Gallery.css"
 import ArtworkList from "./ArtworkList";
 
@@ -19,9 +21,15 @@ export default class Gallery extends Component {
     render() {
 
         return (
+            <div>
 
-            <div className="artworkList">
-                <ArtworkList artwork={this.props.artwork} activeUser={this.props.activeUser} displayAllArtwork={this.props.displayAllArtwork} />
+                <Jumbotron className="jumbotron">
+                    <img className="jumbotron__img" src={heroimage}></img>
+                </Jumbotron>
+
+                <div className="artworkList">
+                    <ArtworkList artwork={this.props.artwork} activeUser={this.props.activeUser} displayAllArtwork={this.props.displayAllArtwork} />
+                </div>
             </div>
 
         )
