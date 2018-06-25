@@ -3,7 +3,6 @@ import artImg from "../images/art_archive_logo.png"
 import $ from "jquery"
 import profilepic from "../images/art_profile.png"
 import gallerypic from "../images/gallery.png"
-// import { Button } from "react-bootstrap"
 import "./NavBar.css"
 
 
@@ -57,11 +56,11 @@ export default class NavBar extends Component {
 
     render() {
         return (
+
             <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
-                <a className="navbar-brand col-sm-3 col-md-2 mr-0" onClick={this.props.viewHandler} href="#">
+                <a className="navbar-brand col-md-10 col-sm-12 mr-0" onClick={this.props.viewHandler} href="#">
                     <img id="nav__home" src={artImg} style={{ height: `75px` }} />
                 </a>
-
 
                 <ul className="navbar-nav">
                     <li className="nav-item text-nowrap">
@@ -94,6 +93,42 @@ export default class NavBar extends Component {
                     </section>
                 </article>
             </nav>
+            // <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+            //     <a className="navbar-brand col-sm-3 col-md-2 mr-0" onClick={this.props.viewHandler} href="#">
+            //         <img id="nav__home" src={artImg} style={{ height: `75px` }} />
+            //     </a>
+
+            //     <ul className="navbar-nav">
+            //         <li className="nav-item text-nowrap">
+            //             <a className="nav-link" onClick={this.addArtworkAffordance} href="#">
+            //                 <img id="navimg__gallery" src={gallerypic} style={{ height: `50px` }}></img>
+            //             </a>
+            //         </li>
+            //     </ul>
+            //     <ul className="navbar-nav">
+            //         <li className="nav-item text-nowrap">
+            //             <a className="nav-link" id="nav__profile"
+            //                 onClick={this.props.viewHandler} href="#">
+            //                 <img id="navimg__profile"
+            //                     onClick={() => $(".profileMenu").slideToggle(333)}
+            //                     src={profilepic} style={{ height: `50px` }} />
+            //             </a>
+            //         </li>
+            //     </ul>
+            //     <ul className="navbar-nav px-3" id="nav__log">
+            //         <li className="nav-item text-nowrap">
+            //             <this.LoginLogout />
+            //         </li>
+            //     </ul>
+            //     <article className="profileMenu">
+            //         <section className="profileMenu__item">
+            //             <div><a href="#" onClick={this.artistsView}>Artists</a></div>
+            //             <div><a href="#" onClick={this.ownersView}>Owners</a></div>
+            //             <div><a href="#" onClick={this.typesView}>Types</a></div>
+            //             <div><a href="#" onClick={this.conditionsView}>Conditions</a></div>
+            //         </section>
+            //     </article>
+            // </nav>
         )
     }
 }

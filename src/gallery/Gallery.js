@@ -24,7 +24,7 @@ export default class Gallery extends Component {
             <div>
 
                 <Jumbotron className="jumbotron">
-                    <img className="jumbotron__img" src={heroimage}></img>
+                    <img className="jumbotron__img img-fluid" alt="Responsive image" src={heroimage}></img>
                 </Jumbotron>
 
                 <div className="artworkList">

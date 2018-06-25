@@ -22,7 +22,7 @@ export default class ArtistList extends Component {
                 <div className="container">
                     <div className="row">
                         {
-                            this.props.artists.map(a => <Artists getArtists={this.props.getArtists} className="col-sm" key={a.id} artists={a} />)
+                            this.props.artists.map(a => <Artists getArtists={this.props.getArtists} className="col-sm" key={a.id} artists={a} id={a.id} />)
                         }
                     </div>
                 </div>

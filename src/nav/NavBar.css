@@ -1,13 +1,13 @@
 .profileMenu {
     display: none;
-    top: 48px;
-    right: 1px;
+    top: 75px;
+    right: 60px;
     padding: 8px;
     position: absolute;
-    width: 250px;
+    width: 110px;
     border: 1px #f5f5f5 solid;
     font-size: 1em;
-    background-color: #AED5D7;
+    background-color: #E8DED5;
     z-index: 5;
 }
 
@@ -18,14 +18,16 @@
 }
 
 .light-blue {
-    background-color:	#858B9F;
+    background-color: #EDECEB;
 }
-
 
 /* 
 color scheme
-#F0C7B5
-#3A4632 
-#99746E 
-https://www.design-seeds.com/wander/wanderlust/color-wander-51/
+#ECDCB9
+#E2A596
+#A07B79
+#A1C6C1
+#CCDBDA
+#EDECEB
+https://www.design-seeds.com/wander/wanderlust/color-view-99/
 */
