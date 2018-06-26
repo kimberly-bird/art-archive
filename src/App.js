@@ -38,7 +38,7 @@ class App extends Component {
     }.bind(this)
 
     getArtists = function (e) {
-        fetch("http://localhost:5001/artists")
+        fetch("http://localhost:5001/artists?_embed=artwork")
         .then(r => r.json())
         .then(response =>
             this.setState({
@@ -156,7 +156,7 @@ class App extends Component {
                 case "types":
                     return <TypeList showView={this.showView} getTypes={this.getTypes} types={this.state.types}/>
                 case "artists":
-                    return <ArtistList showView={this.showView} getArtists={this.getArtists} artists={this.state.artists}/>
+                    return <ArtistList showView={this.showView} getArtists={this.getArtists} artists={this.state.artists} displayAllArtwork={this.displayAllArtwork} />
                 case "conditions":
                     return <ConditionsList showView={this.showView} getConditions={this.getConditions} conditions={this.state.conditions}/>
                 case "owners":

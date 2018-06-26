@@ -7,3 +7,13 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.art__img {
+    height: auto;
+    max-width: 300px;
+    margin: auto;
+}
+/* 
+.btn__artwork {
+    display: none;
+} */

@@ -3,6 +3,7 @@ import Artists from "./Artists"
 import "./Artists.css"
 
 export default class ArtistList extends Component {
+
     constructor(props) {
         super(props)
 
@@ -10,8 +11,6 @@ export default class ArtistList extends Component {
             artists: []
         }
     }
-
-
 
     componentDidMount() {
         this.props.getArtists()
@@ -24,7 +23,9 @@ export default class ArtistList extends Component {
                 <div className="container">
                     <div className="row">
                         {
-                            this.props.artists.map(a => <Artists getArtists={this.props.getArtists} className="col-sm" key={a.id} artists={a} id={a.id} />)
+                            this.props.artists.map(a =>
+                                <Artists getArtists={this.props.getArtists} className="col-sm" key={a.id} artists={a} id={a.id} />
+                            )
                         }
                     </div>
                 </div>
