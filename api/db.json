@@ -61,6 +61,7 @@
       "notes": "Has matching design",
       "userId": 5,
       "artistId": 1,
+      "typeId": 3,
       "id": 6
     },
     {
@@ -71,23 +72,9 @@
       "size": "15x11",
       "notes": "Won award at a Chicago's Artist Guild competition",
       "userId": 5,
+      "typeId": 1,
       "artistId": 2,
       "id": 7
-    },
-    {
-      "timestamp": 1529959231427,
-      "title": "vertical",
-      "image_url": "https://res.cloudinary.com/art-archive/image/upload/v1529959211/mbahkuz2a0v15ecojapc.jpg",
-      "year_signed": "1999",
-      "location_created": "Chicago, IL, USA",
-      "size": "8x11",
-      "notes": "etwr",
-      "typeId": 3,
-      "artistId": 2,
-      "conditionId": 2,
-      "ownerId": 1,
-      "userId": 5,
-      "id": 8
     }
   ],
   "types": [

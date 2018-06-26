@@ -28,7 +28,7 @@ class App extends Component {
     }
 
     getTypes = function (e) {
-        fetch("http://localhost:5001/types")
+        fetch("http://localhost:5001/types?_embed=artwork")
         .then(r => r.json())
         .then(response =>
             this.setState({

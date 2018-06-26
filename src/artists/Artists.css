@@ -6,6 +6,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin: 20px;
 }
 
 .art__img {
@@ -13,7 +14,7 @@
     max-width: 300px;
     margin: auto;
 }
-/* 
-.btn__artwork {
-    display: none;
-} */
+
+.card__artists {
+    margin: 10px;
+}
