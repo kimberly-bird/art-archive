@@ -8,12 +8,10 @@ export default class ArtworkList extends Component {
         return (
             <div className="artworkList">
                 <h1 className="artworkList__header">Gallery</h1>
-                <div className="container">
-                    <div className="row">
-                        {
-                            this.props.artwork.map(a => <Artwork className="col-sm" key={a.id} artwork={a} displayAllArtwork={this.props.displayAllArtwork}/>)
-                        }
-                    </div>
+                <div className="card-columns">
+                    {
+                        this.props.artwork.map(a => <Artwork className="col-sm" key={a.id} artwork={a} displayAllArtwork={this.props.displayAllArtwork} />)
+                    }
                 </div>
             </div>
         )
