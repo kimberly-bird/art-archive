@@ -9,7 +9,7 @@ export default class Artwork extends Component {
                     src={this.props.artwork.image_url} />
                 <div className="overlay card-body">
                     <h2 className="card-title">{this.props.artwork.title}</h2>
-                    <h2 className="card-subtitle mb-2">Artist Name | {this.props.artwork.year_signed}</h2>
+                    <h2 className="card-subtitle mb-2">Luther Johnson | {this.props.artwork.year_signed}</h2>
                     {/* <p className="card-text">{this.props.artwork.notes}</p> */}
                     <p>
                         <button type="button" className="btn btn-secondary"><a href="#">Details</a></button>
