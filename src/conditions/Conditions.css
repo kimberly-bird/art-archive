@@ -6,4 +6,9 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin: 20px;
+}
+
+.card__conditions {
+    margin: 10px;
 }

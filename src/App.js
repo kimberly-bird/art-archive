@@ -48,7 +48,7 @@ class App extends Component {
     }.bind(this)
 
     getConditions = function (e) {
-        fetch("http://localhost:5001/conditions")
+        fetch("http://localhost:5001/conditions?_embed=artwork")
         .then(r => r.json())
         .then(response =>
             this.setState({
@@ -58,7 +58,7 @@ class App extends Component {
     }.bind(this)
 
     getOwners = function (e) {
-        fetch("http://localhost:5001/owners")
+        fetch("http://localhost:5001/owners?_embed=artwork")
         .then(r => r.json())
         .then(response =>
             this.setState({
