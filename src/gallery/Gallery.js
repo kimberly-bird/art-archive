@@ -27,6 +27,8 @@ export default class Gallery extends Component {
                     <img className="jumbotron__img img-fluid" alt="Responsive image" src={heroimage}></img>
                 </Jumbotron>
 
+                {/* <button>this is a button</button> */}
+
                 <div className="artworkList">
                     <ArtworkList artwork={this.props.artwork} activeUser={this.props.activeUser} displayAllArtwork={this.props.displayAllArtwork} />
                 </div>
