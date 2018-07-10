@@ -75,7 +75,7 @@ class App extends Component {
     }
 
     displayAllArtwork = function () {
-        fetch(`http://localhost:5001/artwork?userId=${activeUser}&_expand=user&_sort=title&_order=desc`)
+        fetch(`http://localhost:5001/artwork?_expand=artist&userId=${activeUser}&_expand=user&_sort=title&_order=desc`)
             .then(r => r.json())
             .then(artwork =>
                 this.setState({
