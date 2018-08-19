@@ -9,6 +9,7 @@ import TypeList from "./types/TypeList"
 import ArtistList from "./artists/ArtistList"
 import ConditionsList from "./conditions/ConditionList"
 import OwnersList from "./owners/OwnerList"
+import ArtworkDetail from './gallery/ArtworkDetail';
 
 // get logged in userId
 const activeUser = localStorage.getItem("yakId")
@@ -161,6 +162,8 @@ class App extends Component {
                     return <ConditionsList showView={this.showView} getConditions={this.getConditions} conditions={this.state.conditions}/>
                 case "owners":
                     return <OwnersList showView={this.showView} getOwners={this.getOwners} owners={this.state.owners}/>
+                case "details":
+                    return <ArtworkDetail showView={this.showView} getArtworkDetails={this.getArtworkDetails} artwork={this.state.artwork} />
                 case "gallery":
                 default:
                     return <Gallery activeUser={this.state.activeUser} displayAllArtwork={this.displayAllArtwork} artwork={this.state.artwork} getTypes={this.getTypes} />
@@ -176,6 +179,7 @@ class App extends Component {
                     setActiveUser={this.setActiveUser}
                     newArtHandler={this.addArtwork}
                     displayAllArtwork={this.displayAllArtwork}
+                    getArtworkDetails={this.getArtworkDetails}
                     typeHandler={this.getAllTypes}
                     artistHandler={this.getAllArtists}
                     conditionHandler={this.getAllConditions}
