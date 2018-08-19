@@ -22,7 +22,6 @@ export default class Gallery extends Component {
 
         return (
             <div>
-
                 <Jumbotron className="jumbotron">
                     <img className="jumbotron__img img-fluid" alt="Responsive image" src={heroimage}></img>
                 </Jumbotron>
@@ -31,7 +30,6 @@ export default class Gallery extends Component {
                     <ArtworkList artwork={this.props.artwork} activeUser={this.props.activeUser} displayAllArtwork={this.props.displayAllArtwork} />
                 </div>
             </div>
-
         )
     }
 }
