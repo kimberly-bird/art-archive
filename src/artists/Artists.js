@@ -20,8 +20,6 @@ export default class Artists extends Component {
             <div>
                 <button type="button" className="btn btn-outline-secondary btn__artists" id={this.props.id} onClick={this.toggleHidden.bind(this)}>
                     {this.props.artists.first_name} {this.props.artists.last_name}
-                    {/* | */}
-                    {/* Birth Date {this.props.artists.dob} | Death Date {this.props.artists.death_date} */}
                 </button>
                 {!this.state.isHidden &&
                     <div id="btn__artwork">

@@ -27,7 +27,7 @@ export default class Gallery extends Component {
                 </Jumbotron>
 
                 <div className="artworkList">
-                    <ArtworkList id={this.props.artwork.id} artwork={this.props.artwork} activeUser={this.props.activeUser} displayAllArtwork={this.props.displayAllArtwork} />
+                    <ArtworkList showView={this.props.showView}  id={this.props.artwork.id} artwork={this.props.artwork} activeUser={this.props.activeUser} displayAllArtwork={this.props.displayAllArtwork} />
                 </div>
             </div>
         )

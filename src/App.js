@@ -25,47 +25,49 @@ class App extends Component {
         types: [],
         artists: [],
         conditions: [],
-        owners: []
+        owners: [],
+        clickedId: 0,
+        viewProps: {}
     }
 
     getTypes = function (e) {
         fetch("http://localhost:5001/types?_embed=artwork")
-        .then(r => r.json())
-        .then(response =>
-            this.setState({
-                types: response,
-            })
-        )
+            .then(r => r.json())
+            .then(response =>
+                this.setState({
+                    types: response,
+                })
+            )
     }.bind(this)
 
     getArtists = function (e) {
         fetch("http://localhost:5001/artists?_embed=artwork")
-        .then(r => r.json())
-        .then(response =>
-            this.setState({
-                artists: response,
-            })
-        )
+            .then(r => r.json())
+            .then(response =>
+                this.setState({
+                    artists: response,
+                })
+            )
     }.bind(this)
 
     getConditions = function (e) {
         fetch("http://localhost:5001/conditions?_embed=artwork")
-        .then(r => r.json())
-        .then(response =>
-            this.setState({
-                conditions: response,
-            })
-        )
+            .then(r => r.json())
+            .then(response =>
+                this.setState({
+                    conditions: response,
+                })
+            )
     }.bind(this)
 
     getOwners = function (e) {
         fetch("http://localhost:5001/owners?_embed=artwork")
-        .then(r => r.json())
-        .then(response =>
-            this.setState({
-                owners: response,
-            })
-        )
+            .then(r => r.json())
+            .then(response =>
+                this.setState({
+                    owners: response,
+                })
+            )
     }.bind(this)
 
     componentDidMount() {
@@ -76,7 +78,7 @@ class App extends Component {
     }
 
     displayAllArtwork = function () {
-        fetch(`http://localhost:5001/artwork?_expand=artist&_expand=user&_sort=title&_order=desc`)
+        fetch(`http://localhost:5001/artwork?_expand=artist&_expand=user&_expand=condition&_expand=type&_expand=owner&_sort=title&_order=desc`)
             .then(r => r.json())
             .then(artwork =>
                 this.setState({
@@ -106,6 +108,10 @@ class App extends Component {
         this.setState({ currentView: "owners" })
     }.bind(this)
 
+    getArtworkDetail = function (e) {
+        this.setState({ currentView: "details" })
+    }.bind(this)
+
     // Function to update local storage and set activeUser state
     setActiveUser = (val) => {
         if (val) {
@@ -120,7 +126,7 @@ class App extends Component {
 
     // View switcher -> passed to NavBar and Login
     // Argument can be an event (via NavBar) or a string (via Login)
-    showView = function (e) {
+    showView = function (e, object) {
         let view = null
 
         // Click event triggered switching view
@@ -139,7 +145,8 @@ class App extends Component {
 
         // Update state to correct view will be rendered
         this.setState({
-            currentView: view
+            currentView: view,
+            viewProps: object
         })
 
     }.bind(this)
@@ -155,18 +162,18 @@ class App extends Component {
                 case "addArtwork":
                     return <AddArtwork showView={this.showView} displayAllArtwork={this.displayAllArtwork} types={this.state.types} artists={this.state.artists} conditions={this.state.conditions} owners={this.state.owners} />
                 case "types":
-                    return <TypeList showView={this.showView} getTypes={this.getTypes} types={this.state.types}/>
+                    return <TypeList showView={this.showView} getTypes={this.getTypes} types={this.state.types} />
                 case "artists":
                     return <ArtistList showView={this.showView} getArtists={this.getArtists} artists={this.state.artists} displayAllArtwork={this.displayAllArtwork} />
                 case "conditions":
-                    return <ConditionsList showView={this.showView} getConditions={this.getConditions} conditions={this.state.conditions}/>
+                    return <ConditionsList showView={this.showView} getConditions={this.getConditions} conditions={this.state.conditions} />
                 case "owners":
-                    return <OwnersList showView={this.showView} getOwners={this.getOwners} owners={this.state.owners}/>
+                    return <OwnersList showView={this.showView} getOwners={this.getOwners} owners={this.state.owners} />
                 case "details":
-                    return <ArtworkDetail showView={this.showView} getArtworkDetails={this.getArtworkDetails} artwork={this.state.artwork} />
+                    return <ArtworkDetail showView={this.showView} viewProps={this.state.viewProps} />
                 case "gallery":
                 default:
-                    return <Gallery activeUser={this.state.activeUser} displayAllArtwork={this.displayAllArtwork} artwork={this.state.artwork} getTypes={this.getTypes} />
+                    return <Gallery showView={this.showView} activeUser={this.state.activeUser} displayAllArtwork={this.displayAllArtwork} artwork={this.state.artwork} getTypes={this.getTypes} />
             }
         }
     }
@@ -179,7 +186,6 @@ class App extends Component {
                     setActiveUser={this.setActiveUser}
                     newArtHandler={this.addArtwork}
                     displayAllArtwork={this.displayAllArtwork}
-                    getArtworkDetails={this.getArtworkDetails}
                     typeHandler={this.getAllTypes}
                     artistHandler={this.getAllArtists}
                     conditionHandler={this.getAllConditions}

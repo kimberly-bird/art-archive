@@ -2,23 +2,30 @@ import React, { Component } from "react"
 import "./Artwork.css"
 
 export default class Artwork extends Component {
-    
+    constructor(props) {
+        super(props);
 
-    getArtworkDetails = function (e, id) {
-        e.preventDefault()
-        console.log("button clicked");
-
-        fetch(`http://localhost:5001/artwork/${id}?_expand=artist`)
-            .then(r => r.json())
-            .then(response =>
-                this.setState({
-                    artwork: artwork,
-                    currentView: "details"
-                }))
+        this.state = {
+            currentView: "",
+            clickedId: 0
+        };
     }
 
-    render() {
+    artworkDetailSelected = function (e) {
+        e.preventDefault()
+        // this.props.artworkDetailHandler(this.state.currentView)
+        console.log("button clicked", e.target.id);
+        this.props.showView("details", {artwork: this.props.artwork})
+        
+        this.setState({
+            currentView: "details",
+            clickedId: e.target.id
+        })
 
+        // )
+    }.bind(this)
+
+    render() {
         return (
             <div>
                 <div className="card hovereffect">
@@ -27,9 +34,9 @@ export default class Artwork extends Component {
 
                     <div className="overlay card-body">
                         <h2 className="card-title">{this.props.artwork.title}</h2>
-                        <h2 className="card-subtitle mb-2">Luther Johnson | {this.props.artwork.year_signed}</h2>
+                        <h2 className="card-subtitle mb-2">{this.props.artwork.artist.first_name} {this.props.artwork.artist.last_name} | {this.props.artwork.year_signed}</h2>
 
-                        <button type="button" className="btn btn-secondary" ><a href="#" onClick={this.getArtworkDetails} id={this.props.artwork.id}>Details</a>
+                        <button type="button" className="btn btn-secondary" ><a href="#" onClick={this.artworkDetailSelected} id={this.props.artwork.id}>Details</a>
                         </button>
 
                     </div>
