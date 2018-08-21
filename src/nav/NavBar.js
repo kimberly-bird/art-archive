@@ -86,10 +86,11 @@ export default class NavBar extends Component {
                 </ul>
                 <article className="profileMenu">
                     <section className="profileMenu__item">
-                        <div><a href="#" onClick={this.artistsView}>Artists</a></div>
-                        <div><a href="#" onClick={this.ownersView}>Owners</a></div>
-                        <div><a href="#" onClick={this.typesView}>Types</a></div>
-                        <div><a href="#" onClick={this.conditionsView}>Conditions</a></div>
+                        <div>Filter by</div>
+                        <div><a href="#" onClick={this.artistsView}>Artist</a></div>
+                        <div><a href="#" onClick={this.ownersView}>Owner</a></div>
+                        <div><a href="#" onClick={this.typesView}>Type</a></div>
+                        <div><a href="#" onClick={this.conditionsView}>Condition</a></div>
                     </section>
                 </article>
             </nav>

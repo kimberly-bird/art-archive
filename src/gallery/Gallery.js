@@ -22,18 +22,14 @@ export default class Gallery extends Component {
 
         return (
             <div>
-
                 <Jumbotron className="jumbotron">
                     <img className="jumbotron__img img-fluid" alt="Responsive image" src={heroimage}></img>
                 </Jumbotron>
 
-                {/* <button>this is a button</button> */}
-
                 <div className="artworkList">
-                    <ArtworkList artwork={this.props.artwork} activeUser={this.props.activeUser} displayAllArtwork={this.props.displayAllArtwork} />
+                    <ArtworkList showView={this.props.showView}  id={this.props.artwork.id} artwork={this.props.artwork} activeUser={this.props.activeUser} displayAllArtwork={this.props.displayAllArtwork} />
                 </div>
             </div>
-
         )
     }
 }
