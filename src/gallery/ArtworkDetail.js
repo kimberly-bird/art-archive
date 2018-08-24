@@ -1,40 +1,62 @@
 import React, { Component } from "react"
 import "./ArtworkDetail.css"
 
-const ArtworkDetail = (props) => {
+export default class ArtworkDetail extends Component {
+    constructor(props) {
+        super(props);
 
-    return (
-        <div className="detail-card">
-            <button type="button" className="btn btn-outline-secondary">Edit Artwork</button>
-            <button type="button" className="btn btn-outline-secondary">Delete Artwork</button>
+        this.state = {
+            currentView: "",
+            artwork: []
+        };
+    }
 
-            <div className="card-columns">
-                <div className="card border-secondary text-center p-3">
-                    <h2>{props.viewProps.artwork.title}</h2>
-                    <h4>by {props.viewProps.artwork.artist.first_name} {props.viewProps.artwork.artist.last_name}</h4>
-                    <p>{props.viewProps.artwork.year_signed}</p>
-                </div>
+    deleteFromDb = function (id) {
+        console.log("clicked button", id);
 
-                <div className="card">
-                    <img className="card-img" alt="Card image cap"
-                        src={props.viewProps.artwork.image_url} />
-                </div>
+        fetch(`http://localhost:5001/artwork/${id}`, {
+            method: 'DELETE'
+        })
+            .then(response => response.json())
+            .then(response =>
+                this.props.displayAllArtwork()
+            )
+    }.bind(this)
 
-                <div className="card border-secondary text-center p-3">
-                    <p>Location Created: {props.viewProps.artwork.location_created}</p>
-                    <p>Size: {props.viewProps.artwork.size}</p>
-                    <p>Notes: {props.viewProps.artwork.notes}</p>
-                </div>
+    render() {
+        return (
+            <div className="detail-card">
+                <button type="button" className="btn btn-outline-secondary">Edit Artwork</button>
+                <a href="#"
+                    onClick={() => this.deleteFromDb(this.props.viewProps.artwork.id)}
+                    className="btn btn-outline-secondary">Delete Artwork</a>
 
-                <div className="card border-secondary text-center p-3">
-                    <p>Condition: {props.viewProps.artwork.condition.name}</p>
-                    <p>Current Owner: {props.viewProps.artwork.owner.first_name} {props.viewProps.artwork.owner.last_name}</p>
-                    <p>Type of art: {props.viewProps.artwork.type.name}</p>
+                <div className="card-columns">
+                    <div className="card border-secondary text-center p-3">
+                        <h2>{this.props.viewProps.artwork.title}</h2>
+                        <h4>by {this.props.viewProps.artwork.artist.first_name} {this.props.viewProps.artwork.artist.last_name}</h4>
+                        <p>{this.props.viewProps.artwork.year_signed}</p>
+                    </div>
+
+                    <div className="card">
+                        <img className="card-img" alt="Card image cap"
+                            src={this.props.viewProps.artwork.image_url} />
+                    </div>
+
+                    <div className="card border-secondary text-center p-3">
+                        <p>Location Created: {this.props.viewProps.artwork.location_created}</p>
+                        <p>Size: {this.props.viewProps.artwork.size}</p>
+                        <p>Notes: {this.props.viewProps.artwork.notes}</p>
+                    </div>
+
+                    <div className="card border-secondary text-center p-3">
+                        <p>Condition: {this.props.viewProps.artwork.condition.name}</p>
+                        <p>Current Owner: {this.props.viewProps.artwork.owner.first_name} {this.props.viewProps.artwork.owner.last_name}</p>
+                        <p>Type of art: {this.props.viewProps.artwork.type.name}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
-
-export default ArtworkDetail
 
