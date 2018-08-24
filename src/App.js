@@ -170,7 +170,7 @@ class App extends Component {
                 case "owners":
                     return <OwnersList showView={this.showView} getOwners={this.getOwners} owners={this.state.owners} />
                 case "details":
-                    return <ArtworkDetail showView={this.showView} viewProps={this.state.viewProps} />
+                    return <ArtworkDetail showView={this.showView} viewProps={this.state.viewProps} displayAllArtwork={this.displayAllArtwork} />
                 case "gallery":
                 default:
                     return <Gallery showView={this.showView} activeUser={this.state.activeUser} displayAllArtwork={this.displayAllArtwork} artwork={this.state.artwork} getTypes={this.getTypes} />
@@ -199,3 +199,6 @@ class App extends Component {
 }
 
 export default App
+
+
+
