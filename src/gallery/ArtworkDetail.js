@@ -7,13 +7,11 @@ export default class ArtworkDetail extends Component {
 
         this.state = {
             currentView: "",
-            artwork: []
+            clickedId: 0
         };
     }
 
     deleteFromDb = function (id) {
-        console.log("clicked button", id);
-
         fetch(`http://localhost:5001/artwork/${id}`, {
             method: 'DELETE'
         })
@@ -23,10 +21,23 @@ export default class ArtworkDetail extends Component {
             )
     }.bind(this)
 
+    updateArtwork = function (e) {
+        e.preventDefault()
+        this.props.showView("update", {artwork: this.props.viewProps.artwork})
+        
+        this.setState({
+            currentView: "update",
+            clickedId: e.target.id
+        })
+    }.bind(this)
+
     render() {
         return (
             <div className="detail-card">
-                <button type="button" className="btn btn-outline-secondary">Edit Artwork</button>
+                <a href="#"
+                    onClick={this.updateArtwork}
+                    id={this.props.viewProps.artwork.id}
+                    className="btn btn-outline-secondary">Edit Artwork</a>
                 <a href="#"
                     onClick={() => this.deleteFromDb(this.props.viewProps.artwork.id)}
                     className="btn btn-outline-secondary">Delete Artwork</a>

@@ -299,6 +299,20 @@
       "ownerId": 1,
       "userId": 5,
       "id": 24
+    },
+    {
+      "timestamp": 1535220792460,
+      "title": "New Title",
+      "year_signed": "19602",
+      "location_created": "Chicago, IL, USA new",
+      "size": "8x110",
+      "notes": "Has matching mockup - updated",
+      "typeId": 2,
+      "artistId": 2,
+      "conditionId": 3,
+      "ownerId": 2,
+      "userId": 6,
+      "id": 25
     }
   ],
   "types": [

@@ -13,8 +13,6 @@ export default class Artwork extends Component {
 
     artworkDetailSelected = function (e) {
         e.preventDefault()
-        // this.props.artworkDetailHandler(this.state.currentView)
-        console.log("button clicked", e.target.id);
         this.props.showView("details", {artwork: this.props.artwork})
         
         this.setState({
