@@ -12,7 +12,7 @@ export default class EditArtwork extends Component {
     }
 
     editArtwork = (id) => {
-
+        
         let dataToPost = {
             timestamp: Date.now(),
             title: this.state.title,
@@ -36,8 +36,8 @@ export default class EditArtwork extends Component {
             body: JSON.stringify(dataToPost)
 
         })
+            .then(response => response.json())
             .then(() => {
-                console.log(dataToPost);
                 return fetch(`http://localhost:5001/artwork?userId=${this.props.activeUser}&_expand=user`)
             })
             .then(r => r.json())
