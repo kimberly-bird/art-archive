@@ -34,6 +34,11 @@
       "first_name": "Kimmy",
       "last_name": "Bird",
       "id": 5
+    },
+    {
+      "email": "kimmy@gmail.com",
+      "password": "me",
+      "id": 6
     }
   ],
   "artwork": [
