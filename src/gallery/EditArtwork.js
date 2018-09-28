@@ -1,59 +1,21 @@
 import React, { Component } from "react"
-import Dropzone from 'react-dropzone';
-import request from 'superagent';
-import "./AddArtwork.css"
-import { parse } from "url";
+import "./ArtworkDetail.css"
 
-// variables to handle connection with cloudinary (images)
-const CLOUDINARY_UPLOAD_PRESET = 'fiorembk';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/art-archive/upload';
-
-// get logged in userId
-const activeUser = localStorage.getItem("yakId")
-
-export default class AddArtwork extends Component {
+export default class EditArtwork extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            artwork: [],
-            uploadedFileCloudinaryUrl: "",
-            currentView: "addArtwork"
+            currentView: "update",
+            artwork: []
         };
     }
 
-    // sets state for image drop 
-    onImageDrop(files) {
-        this.setState({
-            uploadedFile: files[0]
-        });
-        this.handleImageUpload(files[0]);
-    }
-
-    // handles image upload 
-    handleImageUpload(file) {
-        let upload = request.post(CLOUDINARY_UPLOAD_URL)
-            .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-            .field('file', file);
-        upload.end((err, response) => {
-            if (err) {
-                console.error(err);
-            }
-            if (response.body.secure_url !== '') {
-                this.setState({
-                    uploadedFileCloudinaryUrl: response.body.secure_url
-                });
-            }
-        });
-    }
-
-    postNewArtwork = (e) => {
-        e.preventDefault();
-
+    editArtwork = (id) => {
+        
         let dataToPost = {
             timestamp: Date.now(),
             title: this.state.title,
-            image_url: this.state.uploadedFileCloudinaryUrl,
             year_signed: this.state.year_signed,
             location_created: this.state.location_created,
             size: this.state.size,
@@ -63,22 +25,20 @@ export default class AddArtwork extends Component {
             framed: this.state.framed,
             conditionId: parseInt(this.state.conditionId),
             ownerId: parseInt(this.state.ownerId),
-            userId: parseInt(activeUser)
+            userId: parseInt(this.props.activeUser)
         }
 
-        fetch(`http://127.0.0.1:8000/artwork/`, {
-        // fetch(`http://localhost:5001/artwork?userId=${activeUser}&_expand=user&_expand=artist&_expand=type&_expand=condition&_expand=owner`, {
-            method: "POST",
+        fetch(`http://localhost:5001/artwork/${id}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(dataToPost)
 
         })
+            .then(response => response.json())
             .then(() => {
-                console.log(dataToPost);
-                return fetch(`http://127.0.0.1:8000/artwork/`)
-                // return fetch(`http://localhost:5001/artwork?userId=${activeUser}&_expand=user`)
+                return fetch(`http://localhost:5001/artwork?userId=${this.props.activeUser}&_expand=user`)
             })
             .then(r => r.json())
             .then(artwork => {
@@ -103,32 +63,12 @@ export default class AddArtwork extends Component {
         return (
             <div id="add__art__form">
                 <form onSubmit={this.showView}>
-                    <label htmlFor="title"><h5>Add New Artwork</h5></label>
+                    <label htmlFor="title"><h5>Edit Artwork</h5></label>
 
                     <div className="form-group">
 
-                        <div className="img__upload">
-                            <Dropzone
-                                multiple={false}
-                                accept="image/*"
-                                onDrop={this.onImageDrop.bind(this)}
-                            >
-                                <p>Drop an image or click to select a file to upload.</p>
-                            </Dropzone>
-                        </div>
-
-                        <div>
-                            <div>
-                                {this.state.uploadedFileCloudinaryUrl === '' ? null :
-                                    <div>
-                                        <p>{this.state.uploadedFile.name}</p>
-                                        <img className="img__preview" src={this.state.uploadedFileCloudinaryUrl} />
-                                    </div>}
-                            </div>
-                        </div>
-
                         <input id="title"
-                            value={this.state.title}
+                            defaultValue={this.props.viewProps.artwork.title}
                             placeholder="Artwork Title"
                             onChange={this.handleFieldChange}
                             className="form-control"
@@ -140,7 +80,7 @@ export default class AddArtwork extends Component {
                             </div>
                             <select
                                 id="typeId"
-                                value={this.state.typeId}
+                                defaultValue={this.props.viewProps.artwork.typeId}
                                 onChange={this.handleFieldChange}
                                 className="custom-select">
                                 <option defaultValue="Select">Select... </option>
@@ -156,7 +96,7 @@ export default class AddArtwork extends Component {
                                 <label className="input-group-text" htmlFor="inputGroupSelect01">Artist</label>
                             </div>
                             <select id="artistId"
-                                value={this.state.artistId}
+                                defaultValue={this.props.viewProps.artwork.artistId}
                                 onChange={this.handleFieldChange}
                                 className="custom-select">
                                 <option value="Select Artist">Select... </option>
@@ -171,7 +111,7 @@ export default class AddArtwork extends Component {
                             min="1900"
                             id="year_signed"
                             placeholder="Year Signed"
-                            value={this.state.year_signed}
+                            defaultValue={this.props.viewProps.artwork.year_signed}
                             onChange={this.handleFieldChange}
                             className="form-control"
                             rows="4">
@@ -180,7 +120,7 @@ export default class AddArtwork extends Component {
                         <input type="location_created"
                             id="location_created"
                             placeholder="Location Created (City, State, Country)"
-                            value={this.state.location_created}
+                            defaultValue={this.props.viewProps.artwork.location_created}
                             onChange={this.handleFieldChange}
                             className="form-control"
                             rows="4">
@@ -189,7 +129,7 @@ export default class AddArtwork extends Component {
                         <input type="size"
                             id="size"
                             placeholder="Size"
-                            value={this.state.size}
+                            defaultValue={this.props.viewProps.artwork.size}
                             onChange={this.handleFieldChange}
                             className="form-control"
                             rows="4">
@@ -209,7 +149,7 @@ export default class AddArtwork extends Component {
                                 <label className="input-group-text" htmlFor="inputGroupSelect01">Condition of Artwork</label>
                             </div>
                             <select id="conditionId"
-                                value={this.state.conditionId}
+                                defaultValue={this.props.viewProps.artwork.conditionId}
                                 onChange={this.handleFieldChange}
                                 className="custom-select">
                                 <option defaultValue="Select">Select...</option>
@@ -225,7 +165,7 @@ export default class AddArtwork extends Component {
                                 <label className="input-group-text" htmlFor="inputGroupSelect01">Current Owner of Artwork</label>
                             </div>
                             <select id="ownerId"
-                                value={this.state.ownerId}
+                                defaultValue={this.props.viewProps.artwork.ownerId}
                                 onChange={this.handleFieldChange}
                                 className="custom-select">
                                 <option defaultValue="Select">Select...</option>
@@ -242,13 +182,13 @@ export default class AddArtwork extends Component {
                             </div>
                             <textarea id="notes"
                                 aria-label="Artwork Notes"
-                                value={this.state.notes}
+                                defaultValue={this.props.viewProps.artwork.notes}
                                 onChange={this.handleFieldChange}
                                 className="form-control art__notes">
                             </textarea>
                         </div>
 
-                        <button type="button" onClick={this.postNewArtwork} className="btn btn-info btn-lg">Add</button>
+                        <button type="button" onClick={this.editArtwork} className="btn btn-info btn-lg">Update</button>
                     </div>
                 </form>
             </div >

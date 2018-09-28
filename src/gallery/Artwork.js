@@ -13,8 +13,6 @@ export default class Artwork extends Component {
 
     artworkDetailSelected = function (e) {
         e.preventDefault()
-        // this.props.artworkDetailHandler(this.state.currentView)
-        console.log("button clicked", e.target.id);
         this.props.showView("details", {artwork: this.props.artwork})
         
         this.setState({
@@ -34,7 +32,7 @@ export default class Artwork extends Component {
 
                     <div className="overlay card-body">
                         <h2 className="card-title">{this.props.artwork.title}</h2>
-                        <h2 className="card-subtitle mb-2">{this.props.artwork.artist.first_name} {this.props.artwork.artist.last_name} | {this.props.artwork.year_signed}</h2>
+                        <h2 className="card-subtitle mb-2">{this.props.artwork.first_name} {this.props.artwork.last_name} | {this.props.artwork.year_signed}</h2>
 
                         <button type="button" className="btn btn-secondary" ><a href="#" onClick={this.artworkDetailSelected} id={this.props.artwork.id}>Details</a>
                         </button>

@@ -10,6 +10,7 @@ import ArtistList from "./artists/ArtistList"
 import ConditionsList from "./conditions/ConditionList"
 import OwnersList from "./owners/OwnerList"
 import ArtworkDetail from './gallery/ArtworkDetail';
+import EditArtwork from './gallery/EditArtwork';
 
 // get logged in userId
 const activeUser = localStorage.getItem("yakId")
@@ -78,7 +79,7 @@ class App extends Component {
     }
 
     displayAllArtwork = function () {
-        fetch(`http://localhost:5001/artwork?_expand=artist&_expand=user&_expand=condition&_expand=type&_expand=owner&_sort=title&_order=desc`)
+        fetch(`http://127.0.0.1:8000/artwork/`)
             .then(r => r.json())
             .then(artwork =>
                 this.setState({
@@ -87,6 +88,8 @@ class App extends Component {
                 })
             )
     }.bind(this)
+
+
 
     addArtwork = function (e) {
         this.setState({ currentView: "addArtwork" })
@@ -124,6 +127,7 @@ class App extends Component {
         })
     }
 
+
     // View switcher -> passed to NavBar and Login
     // Argument can be an event (via NavBar) or a string (via Login)
     showView = function (e, object) {
@@ -160,7 +164,7 @@ class App extends Component {
                 case "logout":
                     return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
                 case "addArtwork":
-                    return <AddArtwork showView={this.showView} displayAllArtwork={this.displayAllArtwork} types={this.state.types} artists={this.state.artists} conditions={this.state.conditions} owners={this.state.owners} />
+                    return <AddArtwork showView={this.showView} displayAllArtwork={this.displayAllArtwork} types={this.state.types} artists={this.state.artists} conditions={this.state.conditions} owners={this.state.owners}  />
                 case "types":
                     return <TypeList showView={this.showView} getTypes={this.getTypes} types={this.state.types} />
                 case "artists":
@@ -171,6 +175,8 @@ class App extends Component {
                     return <OwnersList showView={this.showView} getOwners={this.getOwners} owners={this.state.owners} />
                 case "details":
                     return <ArtworkDetail showView={this.showView} viewProps={this.state.viewProps} displayAllArtwork={this.displayAllArtwork} />
+                case "update":
+                    return <EditArtwork activeUser={this.state.activeUser} showView={this.showView} viewProps={this.state.viewProps} displayAllArtwork={this.displayAllArtwork} types={this.state.types} artists={this.state.artists} conditions={this.state.conditions} owners={this.state.owners} />
                 case "gallery":
                 default:
                     return <Gallery showView={this.showView} activeUser={this.state.activeUser} displayAllArtwork={this.displayAllArtwork} artwork={this.state.artwork} getTypes={this.getTypes} />
