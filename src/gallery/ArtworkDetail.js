@@ -45,7 +45,7 @@ export default class ArtworkDetail extends Component {
                 <div className="card-columns">
                     <div className="card border-secondary text-center p-3">
                         <h2>{this.props.viewProps.artwork.title}</h2>
-                        <h4>by {this.props.viewProps.artwork.artist.first_name} {this.props.viewProps.artwork.artist.last_name}</h4>
+                        <h4>by {this.props.viewProps.artwork.first_name} {this.props.viewProps.artwork.last_name}</h4>
                         <p>{this.props.viewProps.artwork.year_signed}</p>
                     </div>
 
@@ -61,9 +61,9 @@ export default class ArtworkDetail extends Component {
                     </div>
 
                     <div className="card border-secondary text-center p-3">
-                        <p>Condition: {this.props.viewProps.artwork.condition.name}</p>
-                        <p>Current Owner: {this.props.viewProps.artwork.owner.first_name} {this.props.viewProps.artwork.owner.last_name}</p>
-                        <p>Type of art: {this.props.viewProps.artwork.type.name}</p>
+                        <p>Condition: {this.props.viewProps.artwork.condition}</p>
+                        <p>Current Owner: {this.props.viewProps.artwork.owner_first} {this.props.viewProps.artwork.owner_last}</p>
+                        <p>Type of art: {this.props.viewProps.artwork.art_type}</p>
                     </div>
                 </div>
             </div>

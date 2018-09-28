@@ -66,7 +66,8 @@ export default class AddArtwork extends Component {
             userId: parseInt(activeUser)
         }
 
-        fetch(`http://localhost:5001/artwork?userId=${activeUser}&_expand=user&_expand=artist&_expand=type&_expand=condition&_expand=owner`, {
+        fetch(`http://127.0.0.1:8000/artwork/`, {
+        // fetch(`http://localhost:5001/artwork?userId=${activeUser}&_expand=user&_expand=artist&_expand=type&_expand=condition&_expand=owner`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -76,7 +77,8 @@ export default class AddArtwork extends Component {
         })
             .then(() => {
                 console.log(dataToPost);
-                return fetch(`http://localhost:5001/artwork?userId=${activeUser}&_expand=user`)
+                return fetch(`http://127.0.0.1:8000/artwork/`)
+                // return fetch(`http://localhost:5001/artwork?userId=${activeUser}&_expand=user`)
             })
             .then(r => r.json())
             .then(artwork => {

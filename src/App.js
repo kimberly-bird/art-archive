@@ -79,7 +79,7 @@ class App extends Component {
     }
 
     displayAllArtwork = function () {
-        fetch(`http://localhost:5001/artwork?_expand=artist&_expand=user&_expand=condition&_expand=type&_expand=owner&_sort=title&_order=desc`)
+        fetch(`http://127.0.0.1:8000/artwork/`)
             .then(r => r.json())
             .then(artwork =>
                 this.setState({
@@ -88,6 +88,8 @@ class App extends Component {
                 })
             )
     }.bind(this)
+
+
 
     addArtwork = function (e) {
         this.setState({ currentView: "addArtwork" })
