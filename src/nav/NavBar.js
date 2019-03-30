@@ -58,24 +58,28 @@ export default class NavBar extends Component {
         return (
 
             <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
-                <a className="navbar-brand col-md-10 col-sm-12 mr-0" onClick={this.props.viewHandler} href="#">
+                <a className="navbar-brand col-md-9 col-sm-10 mr-0" onClick={this.props.viewHandler} href="#">
                     <img id="nav__home" src={artImg} style={{ height: `75px` }} />
                 </a>
 
                 <ul className="navbar-nav">
                     <li className="nav-item text-nowrap">
                         <a className="nav-link" onClick={this.addArtworkAffordance} href="#">
-                            <img id="navimg__gallery" src={gallerypic} style={{ height: `50px` }}></img>
+                            <h4>Add Art</h4>
                         </a>
+                    </li>
+                </ul>
+                <ul className="navbar-nav">
+                    <li className="nav-item text-nowrap">
+                        <h4 class="menu-separator">|</h4>
                     </li>
                 </ul>
                 <ul className="navbar-nav">
                     <li className="nav-item text-nowrap">
                         <a className="nav-link" id="nav__profile"
                             onClick={this.props.viewHandler} href="#">
-                            <img id="navimg__profile"
-                                onClick={() => $(".profileMenu").slideToggle(333)}
-                                src={profilepic} style={{ height: `50px` }} />
+                            <h4 id="navimg__profile"
+                                onClick={() => $(".profileMenu").slideToggle(333)}>Gallery</h4>
                         </a>
                     </li>
                 </ul>
