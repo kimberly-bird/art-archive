@@ -1,0 +1,14 @@
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 120px auto;
+}
+
+.form-control {
+    margin: 5px 0;
+}
+
+.registerNav {
+    margin-top: 120px;
+}
