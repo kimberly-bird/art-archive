@@ -66,7 +66,7 @@ export default class AddArtwork extends Component {
             userId: parseInt(activeUser)
         }
 
-        fetch(`http://127.0.0.1:8000/artwork/`, {
+        fetch(`https://art-archive-api.herokuapp.com/artwork/`, {
         // fetch(`https://art-archive-api.herokuapp.com/artwork?userId=${activeUser}&_expand=user&_expand=artist&_expand=type&_expand=condition&_expand=owner`, {
             method: "POST",
             headers: {
@@ -77,7 +77,7 @@ export default class AddArtwork extends Component {
         })
             .then(() => {
                 console.log(dataToPost);
-                return fetch(`http://127.0.0.1:8000/artwork/`)
+                return fetch(`https://art-archive-api.herokuapp.com/artwork/`)
                 // return fetch(`https://art-archive-api.herokuapp.com/artwork?userId=${activeUser}&_expand=user`)
             })
             .then(r => r.json())

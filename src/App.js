@@ -79,7 +79,7 @@ class App extends Component {
     }
 
     displayAllArtwork = function () {
-        fetch(`http://127.0.0.1:8000/artwork/`)
+        fetch(`https://art-archive-api.herokuapp.com/artwork/`)
             .then(r => r.json())
             .then(artwork =>
                 this.setState({
