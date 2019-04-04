@@ -3,6 +3,8 @@
 # Welcome to Art Archive!
 I created this app because I collect artwork from my great-grandfather (he was an artist and graphic designer in the 50s-60s in Chicago), as well as pieces I've purchased from travels abroad. I wanted a central repository to easily track the artwork I own as well as its details.
 
+[View Deployed Site](https://art-archive.herokuapp.com/)
+
 Main functionality: 
 1. Adding new artwork (including image upload to Cloudinary)
 1. View artwork collection
@@ -15,7 +17,10 @@ Future functionality:
 1. I would also like to create functionality that would allow users to give authorization to other users to add notes about pieces of artwork. For example, my aunt has a lot of details in her memory about some of the pieces I have from my great-grandfather. I would love for her to add notes to the pieces so I can know more about the history of the piece.
 1. I am also working on a Django REST API - I will be connecting this frontend app to that API, replacing the json-server.
 
-## View your artwork collection
+<details><summary>App Screenshots</summary>
+<p>
+
+### View your artwork collection
 
 ![Artwork Inventory](/src/images/screenshots/2.png)
 
@@ -23,7 +28,7 @@ Future functionality:
 
 ![Artwork Inventory](/src/images/screenshots/3.png)
 
-## Add new artwork
+## Add new artwork (or edit existing artwork)
 
 ![Artwork Inventory](/src/images/screenshots/5.png)
 
@@ -31,6 +36,8 @@ Future functionality:
 
 ![Artwork Inventory](/src/images/screenshots/4.png)
 
+</p>
+</details>
 
 ## Details
 Art Archive is a front-end application built with React, Bootstrap, and Cloudinary to store images. All data is user-generated and stored in a json-server database. 
