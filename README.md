@@ -3,7 +3,7 @@
 # Welcome to Art Archive!
 I created this app because I collect artwork from my great-grandfather (he was an artist and graphic designer in the 50s-60s in Chicago), as well as pieces I've purchased from travels abroad. I wanted a central repository to easily track the artwork I own as well as its details.
 
-[View Deployed Site](https://art-archive.herokuapp.com/)
+[View Deployed Site](https://art-archive.herokuapp.com/) **This site is not secure and is for demo purposes only. Please use a password that you are not using as a password in the real world.*
 
 Main functionality: 
 1. Adding new artwork (including image upload to Cloudinary)
