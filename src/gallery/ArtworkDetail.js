@@ -12,7 +12,7 @@ export default class ArtworkDetail extends Component {
     }
 
     deleteFromDb = function (id) {
-        fetch(`http://localhost:5001/artwork/${id}`, {
+        fetch(`https://art-archive-api.herokuapp.com/artwork/${id}`, {
             method: 'DELETE'
         })
             .then(response => response.json())

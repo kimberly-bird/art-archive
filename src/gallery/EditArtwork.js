@@ -28,7 +28,7 @@ export default class EditArtwork extends Component {
             userId: parseInt(this.props.activeUser)
         }
 
-        fetch(`http://localhost:5001/artwork/${id}`, {
+        fetch(`https://art-archive-api.herokuapp.com/artwork/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -38,7 +38,7 @@ export default class EditArtwork extends Component {
         })
             .then(response => response.json())
             .then(() => {
-                return fetch(`http://localhost:5001/artwork?userId=${this.props.activeUser}&_expand=user`)
+                return fetch(`https://art-archive-api.herokuapp.com/artwork?userId=${this.props.activeUser}&_expand=user`)
             })
             .then(r => r.json())
             .then(artwork => {

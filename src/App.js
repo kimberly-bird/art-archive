@@ -32,7 +32,7 @@ class App extends Component {
     }
 
     getTypes = function (e) {
-        fetch("http://localhost:5001/types?_embed=artwork")
+        fetch("https://art-archive-api.herokuapp.com/types?_embed=artwork")
             .then(r => r.json())
             .then(response =>
                 this.setState({
@@ -42,7 +42,7 @@ class App extends Component {
     }.bind(this)
 
     getArtists = function (e) {
-        fetch("http://localhost:5001/artists?_embed=artwork")
+        fetch("https://art-archive-api.herokuapp.com/artists?_embed=artwork")
             .then(r => r.json())
             .then(response =>
                 this.setState({
@@ -52,7 +52,7 @@ class App extends Component {
     }.bind(this)
 
     getConditions = function (e) {
-        fetch("http://localhost:5001/conditions?_embed=artwork")
+        fetch("https://art-archive-api.herokuapp.com/conditions?_embed=artwork")
             .then(r => r.json())
             .then(response =>
                 this.setState({
@@ -62,7 +62,7 @@ class App extends Component {
     }.bind(this)
 
     getOwners = function (e) {
-        fetch("http://localhost:5001/owners?_embed=artwork")
+        fetch("https://art-archive-api.herokuapp.com/owners?_embed=artwork")
             .then(r => r.json())
             .then(response =>
                 this.setState({
